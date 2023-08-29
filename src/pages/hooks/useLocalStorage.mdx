@@ -1,0 +1,66 @@
+import Install from '../_partials/install.mdx'
+
+# `useLocalStorage()`
+
+The `useLocalStorage` hook provides a convenient way to manage data persistence in the browser's local storage. This can be particularly useful for maintaining user preferences or storing small pieces of data that need to persist across sessions.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/hooks).
+
+2. Import and use the `useLocalStorage` hook in your component.
+
+```tsx
+import { useLocalStorage } from '@ridgehkr/usefulHooks'
+```
+
+## Example
+
+```tsx
+import { useState } from 'react'
+import { useLocalStorage } from '@ridgehkr/usefulHooks'
+
+function App() {
+  const [name, setName] = useState('')
+  const { value, setStoredValue, deleteStoredValue } = useLocalStorage(
+    'user_name',
+    ''
+  )
+
+  const handleNameChange = (event) => {
+    const newName = event.target.value
+    setName(newName)
+    setStoredValue(newName)
+  }
+
+  return (
+    <div>
+      <h1>Hello, {value || 'stranger'}!</h1>
+      <input
+        type='text'
+        value={name}
+        onChange={handleNameChange}
+        placeholder='Enter your name'
+      />
+      <button onClick={deleteStoredValue}>Clear Name</button>
+    </div>
+  )
+}
+```
+
+## API
+
+**`useLocalStorage(key: string, initialValue: any)`**
+
+The `useLocalStorage` hook takes two parameters: `key` and `initialValue`. The `key` is a unique identifier for the stored value in local storage, while `initialValue` is the default value to use if no stored value is found.
+
+#### Return Value
+
+An object with the following properties:
+
+- `value`\
+  The current value stored in local storage for the provided key.
+- `setStoredValue(newValue: any)`\
+  A function to update the stored value for the provided key.\
+- `deleteStoredValue()`\
+  A function to delete the stored value for the provided key and reset it to the initial value.

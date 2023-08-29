@@ -1,0 +1,74 @@
+import Install from '../_partials/install.mdx'
+
+# `useDarkMode()`
+
+This hooks monitors the state of an application's dark mode. Dark mode will default to the system settings selected by the user, but can be overridden when the hook is initially called or when `setIsDarkMode()` is invoked. The document root is also automatically given a `dark-mode` class when dark mode is enabled.
+
+The `prefers-color-scheme` media query is used to detect the user's system-wide dark mode preference.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/hooks).
+
+2. Import and use the `useDarkMode` hook in your component.
+
+```tsx
+import { useDarkMode } from '@ridgehkr/usefulHooks'
+```
+
+## Example
+
+```tsx
+import React from 'react'
+import useDarkMode from 'use-dark-mode-hook'
+
+function App() {
+  const [isDarkMode, setIsDarkMode] = useDarkMode()
+
+  return (
+    <div>
+      <h1>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</h1>
+      <button onClick={() => setIsDarkMode(!isDarkMode)}>
+        Toggle Dark Mode
+      </button>
+    </div>
+  )
+}
+
+export default App
+```
+
+## API
+
+**`useDarkMode(initiallyDark?: boolean | null | undefined): DarkModeUsage`**
+
+The `useDarkMode` hook returns an array containing the current dark mode state and a function to toggle dark mode.
+
+#### Parameters
+
+`initiallyDark` (optional): An initial value for the dark mode state. If not provided, the hook will use the system-wide preference by default.
+
+```tsx
+const [isDarkMode, setIsDarkMode] = useDarkMode(true) // dark mode is enabled by default
+```
+
+#### Return Value
+
+The hook returns an array containing:
+
+**`isDarkMode` (boolean)**\
+Whether or not dark mode is currently enabled.
+
+```tsx
+console.log(isDarkMode) // true/false
+```
+
+**`setIsDarkMode` (function)**\
+A function that accepts a boolean to toggle the dark mode state.
+
+```tsx
+// activate dark mode
+setIsDarkMode(true)
+
+console.log(isDarkMode) // true
+```
