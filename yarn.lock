@@ -3550,25 +3550,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"hooks@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "hooks@workspace:."
-  dependencies:
-    "@graphql-eslint/eslint-plugin": ^3.20.1
-    "@types/node": 20.5.7
-    "@types/react": 18.2.21
-    "@types/react-dom": 18.2.7
-    eslint: 8.48.0
-    eslint-config-next: 13.4.19
-    next: 13.4.19
-    nextra: ^2.12.3
-    nextra-theme-docs: ^2.12.3
-    react: 18.2.0
-    react-dom: 18.2.0
-    typescript: 5.2.2
-  languageName: unknown
-  linkType: soft
-
 "html-void-elements@npm:^3.0.0":
   version: 3.0.0
   resolution: "html-void-elements@npm:3.0.0"
@@ -6822,6 +6803,25 @@ __metadata:
   checksum: d2cc0905a613c77e330c426e8697ee522dd9640eda79ac51160a0f6350e103f09b8c327623880989f8ba7325e8d95267b745aa280fdcc2aead80b023e16bd09d
   languageName: node
   linkType: hard
+
+"usefulhooks-docs@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "usefulhooks-docs@workspace:."
+  dependencies:
+    "@graphql-eslint/eslint-plugin": ^3.20.1
+    "@types/node": 20.5.7
+    "@types/react": 18.2.21
+    "@types/react-dom": 18.2.7
+    eslint: 8.48.0
+    eslint-config-next: 13.4.19
+    next: 13.4.19
+    nextra: ^2.12.3
+    nextra-theme-docs: ^2.12.3
+    react: 18.2.0
+    react-dom: 18.2.0
+    typescript: 5.2.2
+  languageName: unknown
+  linkType: soft
 
 "uuid@npm:^9.0.0":
   version: 9.0.0
