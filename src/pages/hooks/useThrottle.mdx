@@ -1,0 +1,35 @@
+import Install from '../_partials/install.mdx'
+
+# `useThrottle()`
+
+This hook allows you to manage how frequently a given function is invoked.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/hooks).
+
+2. Import and use the `useThrottle` hook in your component.
+
+## Example
+
+```tsx
+import React, { useState } from 'react'
+import useThrottle from './useThrottle'
+
+function App() {
+  const [count, setCount] = useState(0)
+
+  const throttledIncrement = useThrottle((amount: number) => {
+    setCount(count + amount)
+  }, 1000)
+
+  return (
+    <div>
+      <p>Count: {count}</p>
+      <button onClick={() => throttledIncrement(1)}>Increment</button>
+    </div>
+  )
+}
+
+export default App
+```

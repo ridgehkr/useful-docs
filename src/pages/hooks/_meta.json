@@ -1,11 +1,20 @@
 {
   "index": "Getting Started",
+  "useAccordion": "useAccordion()",
   "useDarkMode": "useDarkMode()",
   "useDebounce": "useDebounce()",
   "useFetch": "useFetch()",
   "useGeolocation": "useGeolocation()",
+  "useIdleTimeout": "useIdleTimeout()",
+  "useIntersectionObserver": "useIntersectionObserver()",
+  "useList": "useList()",
   "useLocalStorage": "useLocalStorage()",
   "useMediaQuery": "useMediaQuery()",
+  "usePasswordGenerator": "usePasswordGenerator()",
+  "useScrollPosition": "useScrollPosition()",
+  "useSlideshow": "useSlideshow()",
   "useStack": "useStack()",
-  "useTabs": "useTabs()"
+  "useTabs": "useTabs()",
+  "useThrottle": "useThrottle()",
+  "useWindowSize": "useWindowSize()"
 }
