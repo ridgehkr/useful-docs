@@ -1,0 +1,12 @@
+{
+  "index": "Overview",
+  "hooks": "Hooks",
+  "Built by Caleb": {
+    "type": "page",
+    "href": "https://calebpierce.dev/"
+  },
+  "Blog": {
+    "type": "page",
+    "href": "https://calebpierce.dev/blog/"
+  }
+}

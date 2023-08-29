@@ -1,0 +1,75 @@
+import Install from '../_partials/install.mdx'
+
+# `useFetch()`
+
+This hook allows you to easily fetch data from a given URL. It manages the fetching process, loading states, and potential errors, providing a simple way to integrate data fetching into your React components.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/hooks).
+
+2. Import and use the `useFetch` hook in your component.
+
+```tsx
+import { useFetch } from '@ridgehkr/usefulHooks'
+```
+
+## Example
+
+The hook [returns](#api) an object containing various properties and methods to facilitate data fetching. Here's how you can use it in your component:
+
+```tsx
+import React from 'react'
+import useFetch from 'use-fetch-hook'
+
+const MyComponent = () => {
+  const { load, data, loading, error } = useFetch()
+
+  // Load data when the component mounts
+  React.useEffect(() => {
+    load('https://api.example.com/data')
+  }, [])
+
+  if (loading) {
+    return <p>Loading...</p>
+  }
+
+  if (error) {
+    return <p>Error: {error}</p>
+  }
+
+  return (
+    <div>
+      {/* Render data */}
+      <pre>{JSON.stringify(data, null, 2)}</pre>
+    </div>
+  )
+}
+
+export default MyComponent
+```
+
+## API
+
+**`useFetch(converter?: ConverterFunction<T>)`**\
+
+### Parameters
+
+**`converter?: ConverterFunction<T>`**\
+A function that takes the fetched data as an argument and returns a value of type T. The converter function is **optional**. If it is not provided, the fetched data will be returned as-is.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+- `load(url: string, options?: RequestInit)`\
+  A function that initiates the data fetching process from the specified URL. Additional options can be provided to configure the fetch request.
+
+- `data: T | undefined`\
+  The fetched data. It will be undefined until the data is successfully fetched and processed.
+
+- `loading: boolean`\
+  A boolean indicating whether the data is currently being fetched.
+
+- `error: string | null`\
+  An error message that provides information about any fetch-related errors. It will be null if there are no errors.

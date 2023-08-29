@@ -1,0 +1,11 @@
+{
+  "index": "Getting Started",
+  "useDarkMode": "useDarkMode()",
+  "useDebounce": "useDebounce()",
+  "useFetch": "useFetch()",
+  "useGeolocation": "useGeolocation()",
+  "useLocalStorage": "useLocalStorage()",
+  "useMediaQuery": "useMediaQuery()",
+  "useStack": "useStack()",
+  "useTabs": "useTabs()"
+}
