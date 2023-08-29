@@ -6804,9 +6804,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"usefulhooks-docs@workspace:.":
+"useful-docs@workspace:.":
   version: 0.0.0-use.local
-  resolution: "usefulhooks-docs@workspace:."
+  resolution: "useful-docs@workspace:."
   dependencies:
     "@graphql-eslint/eslint-plugin": ^3.20.1
     "@types/node": 20.5.7
