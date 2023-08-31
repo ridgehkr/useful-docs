@@ -2,34 +2,52 @@ import Install from '../_partials/install.mdx'
 
 # `useThrottle()`
 
-This hook allows you to manage how frequently a given function is invoked.
+The `useThrottle` hook is a custom React hook that allows you to limit the frequency of a value changing to once every specified interval (defaults to 400ms). This can be especially useful when dealing with fast-changing values, such as those updated in response to user input or external events. The hook helps prevent excessive re-renders and improves performance by ensuring that the value updates are throttled to a specified interval.
 
 ## Usage
 
-1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/hooks).
+1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
 2. Import and use the `useThrottle` hook in your component.
 
 ## Example
 
+The `useThrottle` hook takes two parameters: the `value` that you want to throttle and an optional `interval` in milliseconds. It returns the throttled value, which is updated no more frequently than the specified `interval`.
+
+Here's an example of how you can use the `useThrottle` hook in your React component:
+
 ```tsx
 import React, { useState } from 'react'
-import useThrottle from './useThrottle'
+import { useFetch } from '@ridgehkr/usefulHooks'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [inputValue, setInputValue] = useState('')
+  const throttledValue = useThrottle<string>(inputValue, 600) // throttle to 600ms
 
-  const throttledIncrement = useThrottle((amount: number) => {
-    setCount(count + amount)
-  }, 1000)
+  // handle search input change
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = event.target.value
+    setInputValue(newValue)
+  }
 
   return (
     <div>
-      <p>Count: {count}</p>
-      <button onClick={() => throttledIncrement(1)}>Increment</button>
+      <input type='text' value={inputValue} onChange={handleChange} />
+      <p>Search functionality is throttle to 600ms.</p>
+      {throttledValue && <p>Searching for: {throttledValue}</p>}
     </div>
   )
 }
 
 export default App
 ```
+
+In this example, the `inputValue` is updated whenever the user types in the input field. However, the actual rendering of the throttled value (`throttledValue`) will only occur at most once every 600 milliseconds. This prevents excessive re-renders when the user is rapidly typing.
+
+## Parameters
+
+- **`value`** (required)\
+  The value you want to throttle, which could be any data type (e.g., string, number, object, etc.).
+
+- **`interval`** (optional, default: 400)\
+  The interval in milliseconds between updates of the throttled value. This determines how often the throttled value is updated. If the time between updates is less than the specified interval, the updates are ignored.

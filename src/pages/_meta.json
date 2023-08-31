@@ -1,6 +1,6 @@
 {
-  "index": "Overview",
-  "hooks": "Hooks",
+  "index": "Introduction",
+  "hooks": "API Reference",
   "Built by Caleb": {
     "type": "page",
     "href": "https://calebpierce.dev/"
