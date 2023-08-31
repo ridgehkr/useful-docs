@@ -1,18 +1,35 @@
-# Useful: a React Hook Library
+import Install from './_partials/install.mdx'
 
-Welcome to the documentation for Useful! This site provides detailed information on how to use and integrate the Useful's hooks into your React applications. Each hook is designed to simplify specific tasks and enhance your development experience.
+# Useful Hooks
+
+Welcome to the documentation for Useful, a library of React hooks built to make your application development simpler and faster by handling supportive functionality in the background so you can focus on your application's custom requirements. This site provides detailed information on how to use and integrate Useful's hooks into your React applications.
 
 ## Getting Started
 
 To get started with using these custom React hooks, follow these general steps:
 
-Choose a hook from the list above that matches your use case.
-Click on the "Documentation" link for the chosen hook to access detailed information.
-Follow the installation, usage, example, and API sections to integrate the hook into your application.
-Contributing
-If you have suggestions, improvements, or new hooks you'd like to contribute, please follow our contribution guidelines. We welcome your contributions to enhance this collection of custom React hooks.
+1. Install Useful by running the following in your terminal:
 
-## Glossary
+<Install />
+
+After the installation is complete, you can import the hooks into your React components:
+
+```tsx
+// import the useFetch hook
+import { useFetch } from '@ridgehkr/usefulHooks'
+```
+
+For a complete list of all available hooks, see the [list below](#hooks).
+
+## Contributing
+
+Useful thrives on contributions from developers like you! If you encounter issues or have any suggestions for improvements, please feel free to contribute by opening an issue or submitting a pull request on the [GitHub repository](https://github.com/ridgehkr/hooks).
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE.txt](https://github.com/ridgehkr/hooks/blob/master/LICENSE.txt) for details.
+
+## Hooks
 
 ### UI
 
@@ -28,7 +45,7 @@ If you have suggestions, improvements, or new hooks you'd like to contribute, pl
 - [useTabs](/hooks/useTabs)\
   Manage the state of a tabbed interface.
 
-### Browser
+### Environment
 
 - [useGeolocation](/hooks/useGeolocation)\
   Get the current geolocation of the user's device.
@@ -45,7 +62,7 @@ If you have suggestions, improvements, or new hooks you'd like to contribute, pl
 - [useMediaQuery](/hooks/useMediaQuery)\
   Monitor the state of custom media queries.
 
-- [useWindowSize](/hooks/useScrollPosition)\
+- [useScrollPosition](/hooks/useScrollPosition)\
   Track and change the window scroll position.
 
 - [useWindowSize](/hooks/useWindowSize)\
@@ -54,7 +71,7 @@ If you have suggestions, improvements, or new hooks you'd like to contribute, pl
 ### Utilities
 
 - [useDebounce](/hooks/useDebounce)\
-  Debounce a value to prevent rapid firing of events.
+  Debounce the updating of a value to limit rapid-firing events.
 
 - [useFetch](/hooks/useFetch)\
   Fetch data from a given URL and manage loading and error states.
@@ -67,3 +84,6 @@ If you have suggestions, improvements, or new hooks you'd like to contribute, pl
 
 - [useStack](/hooks/useStack)\
   Manage a stack data structure.
+
+- [useThrottle](/hooks/useThrottle)\
+  Throttle the updating of a value to limit rapid-firing events.
