@@ -1,39 +1,29 @@
-# `usePasswordGenerator()`
+# `useElementSize()`
 
-The `usePasswordGenerator` hook provides a convenient way to generate strong passwords with customizable settings. This hook enables you to define password length and choose whether to include symbols, numbers, and uppercase letters in the generated password. The password is updated automatically whenever the settings are changed.
+The useElementSize hook provides an easy way to track and retrieve the size of a DOM element. It monitors the changes in the size of a specified DOM element and updates the size information accordingly.
 
 ## Usage
 
 1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `usePasswordGenerator` hook in your component:
+2. Import and use the `useElementSize` hook in your component:
 
 ```tsx
-import { usePasswordGenerator } from '@ridgehkr/usefulHooks'
+import { useElementSize } from '@ridgehkr/usefulHooks'
 ```
 
 ## Example
 
-The `usePasswordGenerator` hook takes two parameters: the `value` that you want to throttle and an optional `interval` in milliseconds. It returns the throttled value, which is updated no more frequently than the specified `interval`.
+The `useElementSize` hook takes one parameter, a React `ref` for the element that you want to track the size of.
 
-Here's an example of how you can use the `usePasswordGenerator` hook in your React component:
+Here's an example of how you can use the `useElementSize` hook in your React component:
 
 ```tsx
 import './App.css'
-import { usePasswordGenerator } from '@ridgehkr/usefulHooks'
+import { useElementSize } from '@ridgehkr/usefulHooks'
 
 function App() {
-  const {
-    password,
-    length,
-    setLength,
-    symbols,
-    includeSymbols,
-    numbers,
-    includeNumbers,
-    uppercase,
-    includeUppercase,
-  } = usePasswordGenerator()
+  const { width, height, offsetWidth, offsetHeight } = useElementSize()
 
   return (
     <div>
