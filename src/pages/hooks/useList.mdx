@@ -1,1 +1,117 @@
 # `useList()`
+
+The `useList` hook is a custom React hook that provides a way to manage a list (array) of items within your React components. It offers functions for adding, removing, and updating items in the list. This hook is designed to simplify the management of list-based data in your React applications.
+
+## Table of Contents
+
+1. Usage
+
+   - Basic Usage
+   - Immediate Execution
+   - Accessing Async State
+
+2. API Reference
+
+   - useAsync Parameters
+   - useAsync Return Value
+
+3. Examples
+4. Best Practices
+
+## Usage
+
+1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import and use the `useElementSize` hook in your component:
+
+```tsx
+import { useList } from '@ridgehkr/usefulHooks'
+```
+
+### Basic Usage
+
+The useList hook returns an object with the following properties and methods:
+
+- **`items`**: An array representing the current list of items.
+- **`add(item: T)`**: A function to add an item to the list.
+- **`remove(index: number)`**: A function to remove an item from the list by index.
+- **`update(index: number, newItem: T)`**: A function to update an item in the list by index.
+
+Here's an example of how to use the useList hook within a React component:
+
+```tsx
+import React from 'react'
+import { useList } from '@ridgehkr/usefulHooks'
+
+function MyListComponent() {
+  // Initialize the list with some items
+  const { items, add, remove, update } = useList<string>(['Item 1', 'Item 2'])
+
+  const addItem = () => {
+    add('New Item')
+  }
+
+  const removeItem = (index: number) => {
+    remove(index)
+  }
+
+  const updateItem = (index: number, newItem: string) => {
+    update(index, newItem)
+  }
+
+  return (
+    <div>
+      <ul>
+        {items.map((item, index) => (
+          <li key={index}>
+            {item}
+            <button onClick={() => removeItem(index)}>Remove</button>
+            <button
+              onClick={() => updateItem(index, `Updated Item ${index + 1}`)}
+            >
+              Update
+            </button>
+          </li>
+        ))}
+      </ul>
+      <button onClick={addItem}>Add Item</button>
+    </div>
+  )
+}
+
+export default MyListComponent
+```
+
+## API Reference
+
+### Parameters
+
+| Property           | Required? | Type  |                                     Description |
+| :----------------- | :-------: | :---: | ----------------------------------------------: |
+| **`initialItems`** |   false   | `t[]` | Items with which to initially populate the List |
+
+### Return Value
+
+The `useList` hook returns all items in the List along with several functions for interacting with the List.
+
+| Property     | Type                                      | Description                                                                    |
+| :----------- | :---------------------------------------- | :----------------------------------------------------------------------------- |
+| **`items`**  | `T[]`                                     | An array representing the current list of items.                               |
+| **`add`**    | `(item: T): void`                         | A function to add a new item of type `T` to the List.                          |
+| **`remove`** | `(index: number): void`                   | Removes an item from the list at index `index`.                                |
+| **`update`** | `update(index: number, newItem: T): void` | A function to update an item in the list with item `newItem` at index `index`. |
+
+## Example
+
+Here's a simple example of how to use the `useList` hook in a React component:
+
+```tsx
+import React from 'react'
+import { useList } from '@ridgehkr/usefulHooks'
+
+function MyListComponent() {
+  const { items, add, remove, update } = useList<string>(['Item 1', 'Item 2'])
+
+  // Your component code here...
+}
+```
