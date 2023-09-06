@@ -1,108 +1,124 @@
 # `useCSSCustomProp()`
 
-The useCSSCustomProp hook allows you to easily retrieve the current value of a CSS custom property. Even after a property is updated elsewhere, the hook will always return the most up-to-date value.
+This hook allows you to track and retrieve the current value of a CSS custom property in your React components. CSS custom properties, also known as CSS variables, provide a way to define reusable values in your CSS styles. This hook enables you to reactively monitor changes to a specified CSS custom property and obtain its current value within your React component.
+
+## Table of Contents
+
+1. Usage
+
+   - Basic Usage
+   - Immediate Execution
+   - Accessing Async State
+
+2. API Reference
+
+   - `useCSSCustomProp` Parameters
+   - `useCSSCustomProp` Return Value
+
+3. Examples
+4. Best Practices
 
 ## Usage
 
 1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useCSSCustomProp` hook in your component:
-
-```tsx
-import { useCSSCustomProp } from '@ridgehkr/usefulHooks'
-```
-
-## Example
-
-This hook takes a single argument, a [React ref](https://react.dev/learn/referencing-values-with-refs) pointing to the DOM element you want the sizing information of. It returns an object containing the element's size information.
-
-Here's an example of how you can use the `useElementSize` hook in your React component:
+2. Import and use the `useElementSize` hook in your component:
 
 ```tsx
 import { useElementSize } from '@ridgehkr/usefulHooks'
+```
 
-function App() {
-  const sizeRef = useRef<HTMLDivElement>(null)
-  const { width, height, offsetWidth, offsetHeight } = useElementSize(sizeRef)
-  const [modSize, setModSize] = useState(200)
+### Basic Usage
+
+The primary purpose of `useAsync` is to manage asynchronous functions. It returns an object that provides information about the state of the async function and a method to execute it.
+
+```tsx
+const { data, loading, error, run } = useAsync(asyncFunction)
+```
+
+Where:
+
+- **`data`**: Holds the result of the async function when it completes successfully or null if it hasn't been executed yet.
+- **`loading`**: A boolean indicating whether the async function is currently running.
+- **`error`**: Contains any error that occurs during the async function execution or null if no errors occurred.
+- **`run`**: A function that triggers the execution of the async function.
+
+### Immediate Execution
+
+By default, the async function passed to useAsync is executed immediately upon component render. You can control this behavior by passing a second argument to the hook.
+
+```tsx
+const { data, loading, error, run } = useAsync(asyncFunction, false)
+```
+
+Setting `immediate` to `false` means the async function will not run immediately, allowing you to trigger it manually using the `run` function.
+
+### Accessing Async State
+
+To access the state of your asynchronous operation, you can use the `data`, `loading`, and `error` properties as shown in the basic usage example. These values can be used in your component's render function to display loading spinners, error messages, or the fetched data.
+
+```tsx
+if (loading) {
+  return <div>Loading...</div>
+}
+
+if (error) {
+  return <div>Error: {error.message}</div>
+}
+
+if (data) {
+  return <div>Data: {data}</div>
+}
+```
+
+## API Reference
+
+### Parameters
+
+The useCustomCSSProp Hook accepts two optional parameters:
+
+| Property          | Type                                                                        | Required?                      | Description                                                                        |
+| :---------------- | :-------------------------------------------------------------------------- | :----------------------------- | ---------------------------------------------------------------------------------- |
+| **`property`**    | string                                                                      | true                           | The name of the CSS custom property you want to track.                             |
+| **`rootElement`** | [HTMLElement](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement) | false (default: document root) | A reference to the root element where the CSS custom property should be monitored. |
+
+### Return Value
+
+The hook returns the current value of the specified CSS custom property as a string. If the custom property does not exist or is not set, it returns an empty string.
+
+## Example
+
+### Example: Basic Usage
+
+In this example, we're using the `useCustomCSSProp` hook to retrieve the current value of the `--primary-color` CSS custom property. The component's text color will dynamically update whenever the value of the custom property changes.
+
+```tsx
+import React from 'react'
+import { useCustomCSSProp } from '@ridgehkr/usefulHooks'
+
+function CustomPropertyDisplay() {
+  // Define the CSS custom property name you want to track
+  const propertyName = '--primary-color'
+
+  // Use the useCustomCSSProp Hook to obtain the current value of the CSS custom property
+  const customPropValue = useCustomCSSProp(propertyName)
 
   return (
-    <div>
-      <h1>Use Element Size</h1>
-
-      <p>
-        This is a box that is originally 500px square, but has been scaled in
-        half via `transform`. The width and height are the actual rendered size,
-        while the offset width and height represent how much rendered space the
-        box takes up on the page.
-      </p>
-
-      <p>
-        <label>
-          Change box size:
-          <br />
-          <input
-            type='range'
-            min='100'
-            max='800'
-            value={modSize}
-            step='10'
-            onChange={(e: React.FormEvent<HTMLInputElement>) =>
-              setModSize(parseInt(e.currentTarget.value))
-            }
-          />
-        </label>
-      </p>
-      <textarea
-        style={{
-          width: modSize,
-          height: modSize,
-          margin: '0 auto',
-          border: '1px solid black',
-          backgroundColor: '#cfcfcf',
-          resize: 'both',
-          transform: 'scale(0.5)',
-        }}
-        ref={sizeRef}
-      />
-
-      <h2>Box size:</h2>
-      <p>
-        width: <code>{width}</code>
-        <br />
-        height: <code>{height}</code>
-        <br />
-        offset width: <code>{offsetWidth}</code>
-        <br />
-        offset height: <code>{offsetHeight}</code>
-        <br />
-      </p>
+    <div style={{ color: customPropValue }}>
+      The current value of {propertyName} is: {customPropValue}
     </div>
   )
 }
 
-export default App
+export default CustomPropertyDisplay
 ```
 
-## Parameters
+## How it Works
 
-The useElementSize hook takes a single argument:
+The `useCustomCSSProp` Hook uses the `getCustomPropertyValue` utility function to initially retrieve the current value of the CSS custom property. It then sets up a [`MutationObserver`](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver) to efficiently monitor changes to the custom property. When a change is detected, the Hook updates its state with the new value, causing your component to re-render with the updated value.
 
-ref: A React ref that points to the DOM element you want to monitor for size changes.
+## Best Practices
 
-| Parameter |                            Type                             | Required? | Description                                  |
-| :-------- | :---------------------------------------------------------: | --------: | -------------------------------------------- |
-| **`ref`** | [ref](https://react.dev/learn/referencing-values-with-refs) |      true | A ref of the DOM element to get the size of. |
-
-## Return Value
-
-The hook returns an object with the following properties:
-
-| Property     |  Type  |                                           Description |
-| :----------- | :----: | ----------------------------------------------------: |
-| **`width`**  | number |  The current width of the monitored element in pixels |
-| **`height`** | number | The current height of the monitored element in pixels |
-
-### `width` and `height`
-
-These are the [offsetWidth](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetWidth) and [offsetHeight](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetHeight) dimensions of the element's content box. This is the area inside of the element's padding, border, while ignoring any pseudo-elements.
+- Ensure that the CSS custom property you want to track is defined in your CSS styles, either inline or in an external stylesheet.
+- If you need to track multiple CSS custom properties in the same component, you can use multiple instances of the `useCustomCSSProp` Hook with different property names.
+- Remember that the custom property name is case-sensitive, so ensure it matches the exact name used in your CSS.

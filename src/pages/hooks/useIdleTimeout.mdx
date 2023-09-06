@@ -1,1 +1,62 @@
 # `useIdleTimeout()`
+
+This utility hook helps you track user activity and trigger actions when the user becomes inactive for a specified period of time. It is useful for scenarios where you want to perform specific tasks, such as showing a warning message or logging out a user when there has been no user interaction for a certain amount of time.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import and use the `useIdleTimeout` hook in your component:
+
+```tsx
+import { useIdleTimeout } from '@ridgehkr/usefulHooks'
+
+const isIdle = useIdleTimeout({
+  timeout: 30000, // 30 seconds of inactivity
+  onIdle: () => {
+    // Your code to execute when the user becomes idle
+    console.log('User is idle.')
+  },
+})
+```
+
+## Example
+
+This hook takes a single argument, a [React ref](https://react.dev/learn/referencing-values-with-refs) pointing to the DOM element you want the sizing information of. It returns an object containing the element's size information.
+
+Here's an example of how you can use the `useElementSize` hook in your React component:
+
+```tsx
+import { useIdleTimeout } from '@ridgehkr/usefulHooks'
+
+const App = () => {
+  const isIdle = useIdleTimeout({
+    timeout: 30000, // 30 seconds of inactivity
+    onIdle: () => {
+      // Your code to execute when the user becomes idle
+      console.log('User is idle.')
+    },
+  })
+
+  return <div>{isIdle ? <p>User is idle.</p> : <p>User is active.</p>}</div>
+}
+
+export default App
+```
+
+In this example, the `useIdleTimeout` hook is used to monitor user activity, and it updates the `isIdle` variable to indicate whether the user is idle or active. The `onIdle` callback is executed when the user becomes idle, allowing you to perform specific actions in response to user inactivity.
+
+## Parameters
+
+The useElementSize hook takes a single argument:
+
+ref: A React ref that points to the DOM element you want to monitor for size changes.
+
+| Parameter     |   Type   | Required? | Description                                                                                                                                               |
+| :------------ | :------: | --------: | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`timeout`** |  number  |      true | The duration (in milliseconds) of user inactivity required to trigger the idle state and execute the `onIdle` callback.                                   |
+| **`onIdle`**  | function |      true | A callback function that will be executed when the user becomes idle. This is where you can define the actions you want to perform when the user is idle. |
+
+## Return Value
+
+The `useIdleTimeout` hook returns a boolean value indicating whether the user is currently idle (`true`) or active (`false`).

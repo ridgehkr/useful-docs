@@ -1,5 +1,7 @@
 {
   "useAccordion": "useAccordion",
+  "useAsync": "useAsync",
+  "useCSSCustomProp": "useCSSCustomProp",
   "useDarkMode": "useDarkMode",
   "useDebounce": "useDebounce",
   "useElementSize": "useElementSize",
@@ -10,8 +12,10 @@
   "useList": "useList",
   "useLocalStorage": "useLocalStorage",
   "useMediaQuery": "useMediaQuery",
+  "useOnlineStatus": "useOnlineStatus",
   "usePasswordGenerator": "usePasswordGenerator",
   "useScrollPosition": "useScrollPosition",
+  "useSessionStorage": "useSessionStorage",
   "useSlideshow": "useSlideshow",
   "useStack": "useStack",
   "useTabs": "useTabs",
