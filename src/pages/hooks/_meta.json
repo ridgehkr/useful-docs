@@ -2,6 +2,7 @@
   "useAccordion": "useAccordion",
   "useDarkMode": "useDarkMode",
   "useDebounce": "useDebounce",
+  "useElementSize": "useElementSize",
   "useFetch": "useFetch",
   "useGeolocation": "useGeolocation",
   "useIdleTimeout": "useIdleTimeout",
