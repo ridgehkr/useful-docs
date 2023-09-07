@@ -21,7 +21,7 @@ export default {
     </>
   ),
   project: {
-    link: 'https://github.com/ridgehkr/hooks/',
+    link: 'https://github.com/ridgehkr/useful/',
   },
   footer: {
     text: (

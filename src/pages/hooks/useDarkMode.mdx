@@ -48,13 +48,20 @@ The `useDarkMode` hook returns an array containing the current dark mode state a
 
 `initiallyDark` (optional): An initial value for the dark mode state. If not provided, the hook will use the system-wide preference by default.
 
-```tsx
-const [isDarkMode, setIsDarkMode] = useDarkMode(true) // dark mode is enabled by default
-```
+| Property            | Type      | Required | Description                                         |
+| :------------------ | :-------- | :------- | --------------------------------------------------- |
+| **`initiallyDark`** | `boolean` | no       | Whether or not dark mode should be initially active |
 
 #### Return Value
 
 The hook returns an array containing:
+
+| Property            | Type                          | Description                                  |
+| :------------------ | :---------------------------- | -------------------------------------------- |
+| **`isDarkMode`**    | `boolean`                     | Whether or not dark mode is currently active |
+| **`setIsDarkMode`** | `(darkMode: boolean) => void` | Manually set the dark mode state             |
+
+##### Return Value Usage
 
 **`isDarkMode` (boolean)**\
 Whether or not dark mode is currently enabled.

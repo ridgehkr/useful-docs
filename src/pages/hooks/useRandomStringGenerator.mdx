@@ -1,26 +1,26 @@
-# `usePasswordGenerator()`
+# `useRandomStringGenerator()`
 
-The `usePasswordGenerator` hook provides a convenient way to generate strong passwords with customizable settings. This hook enables you to define password length and choose whether to include symbols, numbers, and uppercase letters in the generated password. The password is updated automatically whenever the settings are changed.
+The `useRandomStringGenerator` hook provides a convenient way to generate randomized strings with customizable settings. This hook enables you to define string length and choose whether to include symbols, numbers, and uppercase letters. The string is updated automatically whenever the settings are changed.
 
 ## Usage
 
 1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `usePasswordGenerator` hook in your component:
+2. Import and use the `useRandomStringGenerator` hook in your component:
 
 ```tsx
-import { usePasswordGenerator } from '@ridgehkr/usefulHooks'
+import { useRandomStringGenerator } from '@ridgehkr/usefulHooks'
 ```
 
 ## Example
 
-The `usePasswordGenerator` hook takes two parameters: the `value` that you want to throttle and an optional `interval` in milliseconds. It returns the throttled value, which is updated no more frequently than the specified `interval`.
+The `useRandomStringGenerator` hook takes two parameters: the `value` that you want to throttle and an optional `interval` in milliseconds. It returns the throttled value, which is updated no more frequently than the specified `interval`.
 
-Here's an example of how you can use the `usePasswordGenerator` hook in your React component:
+Here's an example of how you can use the `useRandomStringGenerator` hook in your React component:
 
 ```tsx
 import './App.css'
-import { usePasswordGenerator } from '@ridgehkr/usefulHooks'
+import { useRandomStringGenerator } from '@ridgehkr/usefulHooks'
 
 function App() {
   const {
@@ -92,11 +92,11 @@ function App() {
 export default App
 ```
 
-In this example, the `usePasswordGenerator` hook is used to generate a random password based on the current settings. The password is updated automatically whenever the settings are changed.
+In this example, the `useRandomStringGenerator` hook is used to generate a random string based on the current settings. The resulting string is updated automatically whenever the settings are changed.
 
 ## Parameters
 
-`usePasswordGenerator()` accepts an object of arguments to initially define the properties of the generated password. All of these parameters can be changed later using the [functions returned](#return-value) by the hook.
+`useRandomStringGenerator()` accepts an object of arguments to initially define the properties of the generated string. All of these parameters can be changed later using the [functions returned](#return-value) by the hook.
 
 | Parameter       |  Type   | Required? | Description                                                           |
 | :-------------- | :-----: | --------: | --------------------------------------------------------------------- |
@@ -109,7 +109,7 @@ In this example, the `usePasswordGenerator` hook is used to generate a random pa
 
 ```tsx
 // Initialize the hook with a password with a length of 24 and including symbols, numbers, and uppercase letters
-const { password } = usePasswordGenerator({
+const { value } = useRandomStringGenerator({
   length: 24,
   symbols: true,
   numbers: true,
@@ -119,11 +119,11 @@ const { password } = usePasswordGenerator({
 
 ## Return Value
 
-The `usePasswordGenerator` hook returns an object with the following properties:
+The `useRandomStringGenerator` hook returns an object with the following properties:
 
 | Property                                 |   Type   |                                             Description |
 | :--------------------------------------- | :------: | ------------------------------------------------------: |
-| **`password`**                           |  string  |    The generated password based on the current settings |
+| **`value`**                              |  string  |    The generated password based on the current settings |
 | **`length`**                             |  number  |                    The length of the generated password |
 | **`setLength(length: number)`**          | function |                   A function to set the password length |
 | **`symbols`**                            | boolean  |                     Whether or not symbols are included |

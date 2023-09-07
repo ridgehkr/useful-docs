@@ -1,5 +1,4 @@
 {
-  "useAccordion": "useAccordion",
   "useAsync": "useAsync",
   "useCSSCustomProp": "useCSSCustomProp",
   "useDarkMode": "useDarkMode",
@@ -13,7 +12,7 @@
   "useLocalStorage": "useLocalStorage",
   "useMediaQuery": "useMediaQuery",
   "useOnlineStatus": "useOnlineStatus",
-  "usePasswordGenerator": "usePasswordGenerator",
+  "useRandomStringGenerator": "useRandomStringGenerator",
   "useScrollPosition": "useScrollPosition",
   "useSessionStorage": "useSessionStorage",
   "useSlideshow": "useSlideshow",
