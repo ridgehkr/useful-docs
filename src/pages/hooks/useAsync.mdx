@@ -1,33 +1,22 @@
 # `useAsync()`
 
-The `useAsync` hook is a powerful utility for managing the state of asynchronous operations in React applications. It simplifies handling async functions, providing an easy way to track their execution status, and execute them with optional immediate invocation.
-
-It is a valuable tool for managing asynchronous operations in React applications. It simplifies the process of tracking and executing asynchronous functions, providing clear states for loading, errors, and data. By following the documentation and examples provided, you can efficiently integrate this hook into your projects and create responsive and error-tolerant user interfaces for your async tasks.
+This is a powerful utility for managing the state of asynchronous operations in React applications. It simplifies handling async functions, providing an easy way to track their execution status and either manually or immediately invoke them. It is a valuable tool for managing asynchronous operations in React applications by simplifying the process of tracking and executing asynchronous functions while providing clear states for loading, errors, and data.
 
 ## Table of Contents
 
-1. Usage
-
-   - Basic Usage
-   - Immediate Execution
-   - Accessing Async State
-
-2. API Reference
-
-   - useAsync Parameters
-   - useAsync Return Value
-
-3. Examples
-4. Best Practices
+1. [Usage](#usage)
+2. [API Reference](#api-reference)
+3. [Examples](#examples)
+4. [Tips](#tips)
 
 ## Usage
 
 1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useElementSize` hook in your component:
+2. Import `useAsync` for use in your component:
 
 ```tsx
-import { useElementSize } from '@ridgehkr/usefulHooks'
+import { useAsync } from '@ridgehkr/usefulHooks'
 ```
 
 ### Basic Usage
@@ -40,10 +29,12 @@ const { data, loading, error, run } = useAsync(asyncFunction)
 
 Where:
 
-- **`data`**: Holds the result of the async function when it completes successfully or null if it hasn't been executed yet.
-- **`loading`**: A boolean indicating whether the async function is currently running.
-- **`error`**: Contains any error that occurs during the async function execution or null if no errors occurred.
-- **`run`**: A function that triggers the execution of the async function.
+- **`data`** holds the result of the async function when it completes successfully or null if it hasn't been executed yet.
+- **`loading`** is a boolean indicating whether the async function is currently running.
+- **`error`** contains any error that occurs during the async function execution or null if no errors occurred.
+- **`run`** is a function that triggers the execution of the async function.
+
+[See the API Reference](#api-reference) for details on these return values.
 
 ### Immediate Execution
 
@@ -53,55 +44,58 @@ By default, the async function passed to useAsync is executed immediately upon c
 const { data, loading, error, run } = useAsync(asyncFunction, false)
 ```
 
-Setting `immediate` to `false` means the async function will not run immediately, allowing you to trigger it manually using the `run` function.
+Setting this argument to `false` means the async function will not run immediately, allowing you to trigger it manually using the `run` function.
 
 ### Accessing Async State
 
-To access the state of your asynchronous operation, you can use the `data`, `loading`, and `error` properties as shown in the basic usage example. These values can be used in your component's render function to display loading spinners, error messages, or the fetched data.
+To access the state of your asynchronous operation, you can use the `data`, `loading`, and `error` properties as shown in the [basic usage example](#basic-usage). These values can be used in your component's render function to display loading spinners, error messages, or the fetched data.
 
 ```tsx
+// Display "Loading…" if the asyncronous function has not yet resolved
 if (loading) {
   return <div>Loading...</div>
 }
 
+// Display the error message that was caught from the asyncronous function
 if (error) {
   return <div>Error: {error.message}</div>
 }
 
+// Data will be null if there was an error or if the function has yet to resolve
 if (data) {
-  return <div>Data: {data}</div>
+  // output data values here…
 }
 ```
 
 ## API Reference
 
-### `useAsync` Parameters
+### Parameters
 
-| Property            |        Required?        |        Type        |                                                                                                                             Description |
-| :------------------ | :---------------------: | :----------------: | --------------------------------------------------------------------------------------------------------------------------------------: |
-| **`asyncFunction`** |          true           | `AsyncFunction<T>` |                                        The asynchronous function that you want to manage. It must be a function that returns a Promise. |
-| **`immediate`**     | false (default: `true`) |      boolean       | Determines whether the async function should run immediately upon component render or wait for manual execution using the run function. |
+| Property            | Required             | Type               | Description                                                                                                                             |
+| :------------------ | :------------------- | :----------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| **`asyncFunction`** | yes                  | `AsyncFunction<T>` | The asynchronous function that you want to manage. It must be a function that returns a Promise.                                        |
+| **`immediate`**     | no (default: `true`) | `boolean`          | Determines whether the async function should run immediately upon component render or wait for manual execution using the run function. |
 
-### useAsync Return Value
+### Return Value
 
 The `useAsync` hook returns an object with the following properties and methods:
 
-| Property      |        Type         |                                                                                             Description |
-| :------------ | :-----------------: | ------------------------------------------------------------------------------------------------------: |
+| Property      | Type                | Description                                                                                             |
+| :------------ | :------------------ | :------------------------------------------------------------------------------------------------------ |
 | **`data`**    | `AsyncFunction<T>`  | The result of the async function when it completes successfully or null if it hasn't been executed yet. |
-| **`loading`** |       boolean       |                                   A boolean indicating whether the async function is currently running. |
-| **`error`**   | `unknown` or `null` |       Contains any error that occurs during the async function execution or null if no errors occurred. |
-| **`run`**     |    `() => void`     |                                           A function that triggers the execution of the async function. |
+| **`loading`** | `boolean`           | Whether the async function is currently awaiting resolution.                                            |
+| **`error`**   | `unknown` or `null` | Contains any error that occurs during the async function execution or `null` if no errors occurred.     |
+| **`run`**     | `() => void`        | A function that triggers the execution of the async function.                                           |
 
 ## Examples
 
 ### Example 1: Basic Usage
 
-The `fetchData` function is executed immediately upon component render. The `loading` state is true while the function is running, and the `data` state is updated with the result of the function when it completes successfully.
+In this example, the `fetchData` function is executed immediately upon component render. The `loading` state is true while the function is running, and the `data` state is updated with the result of the function when it completes successfully.
 
 ```tsx
 import React from 'react'
-import { useAsync } from '@ridgehkr/usefulHooks'
+import { useAsync } from '@ridgehkr/useful'
 
 function App() {
   const fetchData = async () => {
@@ -120,8 +114,6 @@ function App() {
     </div>
   )
 }
-
-export default App
 ```
 
 ### Example 2: Manual Execution
@@ -130,7 +122,7 @@ Because the `immediate` flag is false, the asynchronous function `fetchData` wil
 
 ```tsx
 import React from 'react'
-import useAsync from './useAsync'
+import { useAsync } from '@ridgehkr/useful'
 
 function App() {
   const fetchData = async () => {
@@ -149,11 +141,9 @@ function App() {
     </div>
   )
 }
-
-export default App
 ```
 
-## Best Practices
+## Tips
 
 - Ensure that the `asyncFunction` passed to `useAsync` is an asynchronous function that returns a Promise.
 - Use the `loading`, `error`, and `data` states to provide user feedback during the asynchronous operation.

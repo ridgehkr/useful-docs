@@ -6,9 +6,7 @@ Welcome to the documentation for Useful, a library of React hooks built to make 
 
 ## Getting Started
 
-To get started with using these custom React hooks, follow these general steps:
-
-1. Install Useful by running the following in your terminal:
+First, install Useful from NPM by running the following in your terminal:
 
 <Install />
 
@@ -16,28 +14,24 @@ After the installation is complete, you can import the hooks into your React com
 
 ```tsx
 // import the useFetch hook
-import { useFetch } from '@ridgehkr/usefulHooks'
+import { useFetch } from '@ridgehkr/useful'
 ```
 
 This example imports the `useFetch` hook. For a complete list of all available hooks, see the [list below](#all-hooks).
 
 ## Contributing
 
-Useful thrives on contributions from developers like you! If you encounter issues or have any suggestions for improvements, please feel free to contribute by opening an issue or submitting a pull request on the [GitHub repository](https://github.com/ridgehkr/hooks).
+Useful thrives on contributions from developers like you! If you encounter issues or have any suggestions for improvements, please feel free to contribute by opening an issue or submitting a pull request in the [GitHub repository](https://github.com/ridgehkr/useful).
 
-## License
-
-This project is licensed under the MIT License. See [LICENSE.txt](https://github.com/ridgehkr/hooks/blob/master/LICENSE.txt) for details.
-
-## All Hooks
+## Hooks Index
 
 ### UI
 
-- [useAccordion](/hooks/useAccordion)\
-  Manage the state of an accordion interface.
-
 - [useDarkMode](/hooks/useDarkMode)\
   Monitor and manage your application's dark mode.
+
+- [useElementSize](/hooks/useElementSize)\
+  Track the width and height of a given element.
 
 - [useSlideshow](/hooks/useSlideshow)\
   Manage the state of a slideshow component.
@@ -46,6 +40,9 @@ This project is licensed under the MIT License. See [LICENSE.txt](https://github
   Manage the state of a tabbed interface.
 
 ### Environment
+
+- [useCSSCustomProp](/hooks/useCSSCustomProp)\
+  Track the current value of a CSS custom prop.
 
 - [useGeolocation](/hooks/useGeolocation)\
   Get the current geolocation of the user's device.
@@ -62,6 +59,12 @@ This project is licensed under the MIT License. See [LICENSE.txt](https://github
 - [useMediaQuery](/hooks/useMediaQuery)\
   Monitor the state of custom media queries.
 
+- [useOnlineStatus](/hooks/useOnlineStatus)\
+  Monitor the connected state of the user.
+
+- [useSessionStorage](/hooks/useSessionStorage)\
+  Manage data persistence in the browser's local storage.
+
 - [useScrollPosition](/hooks/useScrollPosition)\
   Track and change the window scroll position.
 
@@ -70,6 +73,9 @@ This project is licensed under the MIT License. See [LICENSE.txt](https://github
 
 ### Utilities
 
+- [useAsync](/hooks/useAsync)\
+  Manage the execution state of an asyncronous function.
+
 - [useDebounce](/hooks/useDebounce)\
   Debounce the updating of a value to limit rapid-firing events.
 
@@ -77,13 +83,17 @@ This project is licensed under the MIT License. See [LICENSE.txt](https://github
   Fetch data from a given URL and manage loading and error states.
 
 - [useList](/hooks/useList)\
-  Manage a list data structure.
+  Manage a List data structure.
 
-- [usePasswordGenerator](/hooks/usePasswordGenerator)\
-  Generates a random password string based off of selected criteria.
+- [useRandomStringGenerator](/hooks/useRandomStringGenerator)\
+  Generates a random string based off of specified criteria.
 
 - [useStack](/hooks/useStack)\
   Manage a stack data structure.
 
 - [useThrottle](/hooks/useThrottle)\
   Throttle the updating of a value to limit rapid-firing events.
+
+## License
+
+This project is licensed under the MIT License. See [LICENSE.txt](https://github.com/ridgehkr/useful/blob/master/LICENSE.txt) for details.
