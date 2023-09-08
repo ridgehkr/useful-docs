@@ -1,28 +1,28 @@
 import Install from '../_partials/install.mdx'
 
-# `useLocalStorage()`
+# useSessionStorage
 
-The `useLocalStorage` hook provides a convenient way to manage data persistence in the browser's local storage. This can be particularly useful for maintaining user preferences or storing small pieces of data that need to persist across sessions.
+The `useSessionStorage()` hook provides a convenient way to manage data persistence in the browser's local storage. This can be particularly useful for maintaining user preferences or storing small pieces of data that need to persist across sessions.
 
 ## Usage
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useLocalStorage` hook in your component.
+2. Import and use the `useSessionStorage` hook in your component.
 
 ```tsx
-import { useLocalStorage } from '@ridgehkr/useful'
+import { useSessionStorage } from '@ridgehkr/useful'
 ```
 
 ## Example
 
 ```tsx
 import { useState } from 'react'
-import { useLocalStorage } from '@ridgehkr/useful'
+import { useSessionStorage } from '@ridgehkr/useful'
 
 function App() {
   const [name, setName] = useState('')
-  const { value, setStoredValue, deleteStoredValue } = useLocalStorage(
+  const { value, setStoredValue, deleteStoredValue } = useSessionStorage(
     'user_name',
     ''
   )
@@ -50,9 +50,9 @@ function App() {
 
 ## API
 
-**`useLocalStorage(key: string, initialValue: any)`**
+**`useSessionStorage(key: string, initialValue: any)`**
 
-The `useLocalStorage` hook takes two parameters: `key` and `initialValue`. The `key` is a unique identifier for the stored value in local storage, while `initialValue` is the default value to use if no stored value is found.
+The `useSessionStorage` hook takes two parameters: `key` and `initialValue`. The `key` is a unique identifier for the stored value in local storage, while `initialValue` is the default value to use if no stored value is found.
 
 #### Return Value
 
@@ -60,7 +60,7 @@ An object with the following properties:
 
 - `value`\
   The current value stored in local storage for the provided key.
-- `setStoredValue(newValue: any)`\
+- `setStoredValue(newValue: T)`\
   A function to update the stored value for the provided key.\
 - `deleteStoredValue()`\
   A function to delete the stored value for the provided key and reset it to the initial value.

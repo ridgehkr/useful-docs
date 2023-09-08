@@ -1,1 +1,145 @@
 # `useSlideshow()`
+
+The `useSlideshow` hook is designed to manage the state of a slideshow component in your React application. It provides methods for adding and removing slides, as well as controlling the currently active slide. This hook is simple yet powerful, handling the business logic of a slideshow while allowing you to only need to worry about the interactive components in your slideshow.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useSlideshow` for use in your component:
+
+```tsx
+import { useSlideshow } from '@ridgehkr/useful'
+```
+
+### Basic Usage
+
+The primary purpose of `useSlideshow` is to manage an asynchronous function. It returns an object that provides information about the state of it and a function to execute it if not immediately invoked.
+
+```tsx filename="MySlideshow.jsx"
+import React from 'react'
+import useSlideshow from './useSlideshow' // Adjust the import path as needed.
+
+function MySlideshow() {
+  const { slides, activeSlideIndex, addSlide, removeSlide, activateSlide } =
+    useSlideshow()
+
+  // Your component logic here...
+
+  return <div>{/* Slideshow rendering logic here... */}</div>
+}
+```
+
+## API Reference
+
+### Parameters
+
+The `useSlideshow` hook accepts an optional boolean as its parameter. This allows you to set the looping behavior of your slideshow:
+
+| Property   | Required              | Type      | Description                                                                                       |
+| :--------- | :-------------------- | :-------- | :------------------------------------------------------------------------------------------------ |
+| **`loop`** | no (default: `false`) | `boolean` | Determines whether the slideshow should loop back to the first slide after reaching the last one. |
+
+### Return Value
+
+The `useSlideshow` hook returns an object with the following values:
+
+#### `addSlide()`
+
+Adds a new slide to the slideshow.
+
+Signature: **`addSlide(slide: T, index?: number): void`**
+
+- **`slide (T)`**: The content of the new slide.
+- **`index (number)`**: The index where the new slide should be added (default: at the end of the slideshow).
+
+#### `removeSlide()`
+
+Removes a slide from the slideshow.
+
+Signature: **`removeSlide(index: number): void`**
+
+- **`index (number)`**: The index of the slide to remove.
+
+#### `activateSlide()`
+
+Activates a slide in the slideshow.
+
+Signature: **`activateSlide(index: number): void`**
+
+- **`index (number)`**: The index of the slide to activate.
+
+## Example:
+
+Here's an example of how you can use all of the return values from the useSlideshow hook to create a basic slideshow:
+
+```tsx filename="Slideshow.tsx"
+import React from 'react'
+import { useSlideshow } from '@ridgehkr/useful'
+
+function Slideshow() {
+  // Initialize the slideshow state using useSlideshow()
+  const { slides, activeSlideIndex, addSlide, removeSlide, activateSlide } =
+    useSlideshow<React.ReactNode>()
+
+  // Add a new slide
+  const handleAddSlide = () => {
+    addSlide(`Slide ${slides.length + 1}: ${slideContent[slides.length]}`)
+  }
+
+  // Remove the active slide
+  const handleRemoveSlide = () => {
+    removeSlide(activeSlideIndex)
+  }
+
+  // Activate a specific slide by index
+  const handleActivateSlide = (index: number) => {
+    activateSlide(index)
+  }
+
+  // Navigate to the previous slide
+  const handlePreviousSlide = () => {
+    activateSlide(activeSlideIndex - 1)
+  }
+
+  // Navigate to the next slide
+  const handleNextSlide = () => {
+    activateSlide(activeSlideIndex + 1)
+  }
+
+  return (
+    <div>
+      <h1>Slideshow</h1>
+      <button onClick={handleAddSlide}>Add Slide</button>
+      <button onClick={handleRemoveSlide}>Remove Active Slide</button>
+      <button onClick={handlePreviousSlide}>Previous Slide</button>
+      <button onClick={handleNextSlide}>Next Slide</button>
+      <ul>
+        {slides.map((slide, index) => (
+          <li
+            key={index}
+            className={
+              index === activeSlideIndex ? 'activeSlide' : 'inactiveSlide'
+            }
+          >
+            <button onClick={() => handleActivateSlide(index)}>{slide}</button>
+          </li>
+        ))}
+      </ul>
+      <ul>
+        {slides.map((_, index) => (
+          <li
+            key={index}
+            className={
+              index === activeSlideIndex ? 'activeSlideDot' : 'inactiveSlideDot'
+            }
+          >
+            <button onClick={() => activateSlide(index)}>&bull;</button>
+          </li>
+        ))}
+      </ul>
+      <p>Total slides: {slides.length}</p>
+    </div>
+  )
+}
+```
