@@ -2,26 +2,19 @@
 
 This is a powerful utility for managing the state of asynchronous operations in React applications. It simplifies handling async functions, providing an easy way to track their execution status and either manually or immediately invoke them. It is a valuable tool for managing asynchronous operations in React applications by simplifying the process of tracking and executing asynchronous functions while providing clear states for loading, errors, and data.
 
-## Table of Contents
-
-1. [Usage](#usage)
-2. [API Reference](#api-reference)
-3. [Examples](#examples)
-4. [Tips](#tips)
-
 ## Usage
 
-1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
 2. Import `useAsync` for use in your component:
 
 ```tsx
-import { useAsync } from '@ridgehkr/usefulHooks'
+import { useAsync } from '@ridgehkr/useful'
 ```
 
 ### Basic Usage
 
-The primary purpose of `useAsync` is to manage asynchronous functions. It returns an object that provides information about the state of the async function and a method to execute it.
+The primary purpose of `useAsync` is to manage an asynchronous function. It returns an object that provides information about the state of it and a function to execute it if not immediately invoked.
 
 ```tsx
 const { data, loading, error, run } = useAsync(asyncFunction)
@@ -34,7 +27,7 @@ Where:
 - **`error`** contains any error that occurs during the async function execution or null if no errors occurred.
 - **`run`** is a function that triggers the execution of the async function.
 
-[See the API Reference](#api-reference) for details on these return values.
+[See the API Reference](#api-reference) for more details on these return values.
 
 ### Immediate Execution
 
@@ -71,21 +64,29 @@ if (data) {
 
 ### Parameters
 
-| Property            | Required             | Type               | Description                                                                                                                             |
-| :------------------ | :------------------- | :----------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| **`asyncFunction`** | yes                  | `AsyncFunction<T>` | The asynchronous function that you want to manage. It must be a function that returns a Promise.                                        |
-| **`immediate`**     | no (default: `true`) | `boolean`          | Determines whether the async function should run immediately upon component render or wait for manual execution using the run function. |
+| Property            | Required             | Type                                       | Description                                                                                                                             |
+| :------------------ | :------------------- | :----------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
+| **`asyncFunction`** | yes                  | [`AsyncFunction<T>`](#asyncfunctiont-type) | The asynchronous function that you want to manage. It must be a function that returns a Promise.                                        |
+| **`immediate`**     | no (default: `true`) | `boolean`                                  | Determines whether the async function should run immediately upon component render or wait for manual execution using the run function. |
+
+#### `AsyncFunction<T>` type
+
+The `AsyncFunction<T>` type is a generic type that represents an asynchronous function that returns a Promise. It is defined as follows:
+
+```tsx
+type AsyncFunction<T> = () => Promise<T>
+```
 
 ### Return Value
 
-The `useAsync` hook returns an object with the following properties and methods:
+The `useAsync` hook returns an object with the following values:
 
-| Property      | Type                | Description                                                                                             |
-| :------------ | :------------------ | :------------------------------------------------------------------------------------------------------ |
-| **`data`**    | `AsyncFunction<T>`  | The result of the async function when it completes successfully or null if it hasn't been executed yet. |
-| **`loading`** | `boolean`           | Whether the async function is currently awaiting resolution.                                            |
-| **`error`**   | `unknown` or `null` | Contains any error that occurs during the async function execution or `null` if no errors occurred.     |
-| **`run`**     | `() => void`        | A function that triggers the execution of the async function.                                           |
+| Property      | Type                                                 | Description                                                                                             |
+| :------------ | :--------------------------------------------------- | :------------------------------------------------------------------------------------------------------ |
+| **`data`**    | [`AsyncFunction<T>`](#asyncfunctiont-type) or `null` | The result of the async function when it completes successfully or null if it hasn't been executed yet. |
+| **`loading`** | `boolean`                                            | Whether the async function is currently awaiting resolution.                                            |
+| **`error`**   | `unknown` or `null`                                  | Contains any error that occurs during the async function execution or `null` if no errors occurred.     |
+| **`run`**     | `() => void`                                         | A function that triggers the execution of the async function.                                           |
 
 ## Examples
 
@@ -93,7 +94,7 @@ The `useAsync` hook returns an object with the following properties and methods:
 
 In this example, the `fetchData` function is executed immediately upon component render. The `loading` state is true while the function is running, and the `data` state is updated with the result of the function when it completes successfully.
 
-```tsx
+```tsx filename="App.jsx"
 import React from 'react'
 import { useAsync } from '@ridgehkr/useful'
 
@@ -118,9 +119,9 @@ function App() {
 
 ### Example 2: Manual Execution
 
-Because the `immediate` flag is false, the asynchronous function `fetchData` will not run immediately upon component render. Instead, it will wait for the `run` function to be called.
+Because the `immediate` flag is false, the asynchronous function `fetchData` will not run immediately upon component render. Instead, it will wait for the `run` function to be called:
 
-```tsx
+```tsx filename="App.jsx"
 import React from 'react'
 import { useAsync } from '@ridgehkr/useful'
 

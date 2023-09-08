@@ -20,12 +20,12 @@ The `useList` hook is a custom React hook that provides a way to manage a list (
 
 ## Usage
 
-1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
 2. Import and use the `useElementSize` hook in your component:
 
 ```tsx
-import { useList } from '@ridgehkr/usefulHooks'
+import { useList } from '@ridgehkr/useful'
 ```
 
 ### Basic Usage
@@ -41,7 +41,7 @@ Here's an example of how to use the useList hook within a React component:
 
 ```tsx
 import React from 'react'
-import { useList } from '@ridgehkr/usefulHooks'
+import { useList } from '@ridgehkr/useful'
 
 function MyListComponent() {
   // Initialize the list with some items
@@ -107,7 +107,7 @@ Here's a simple example of how to use the `useList` hook in a React component:
 
 ```tsx
 import React from 'react'
-import { useList } from '@ridgehkr/usefulHooks'
+import { useList } from '@ridgehkr/useful'
 
 function MyListComponent() {
   const { items, add, remove, update } = useList<string>(['Item 1', 'Item 2'])
