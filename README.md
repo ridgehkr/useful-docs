@@ -1,6 +1,6 @@
 # usefulHooks Documentation
 
-This is a documentation site for [usefulHooks](https://calebpierce.dev/usefulhooks/).
+This is a documentation site for [Useful](https://usefulhooks.com/).
 
 ## Development
 
@@ -24,7 +24,7 @@ This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-opti
 
 ## Author
 
-This documentation as well as its sister project [usefulHooks](https://calebpierce.dev/usefulhooks/) is built and maintained by [Caleb Pierce](https://calebpierce.dev/).
+This documentation as well as its sister project [Useful](https://usefulhooks.com/) is built and maintained by [Caleb Pierce](https://calebpierce.dev/).
 
 ## License
 

@@ -4,12 +4,12 @@ This utility hook helps you track user activity and trigger actions when the use
 
 ## Usage
 
-1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
 2. Import and use the `useIdleTimeout` hook in your component:
 
 ```tsx
-import { useIdleTimeout } from '@ridgehkr/usefulHooks'
+import { useIdleTimeout } from '@ridgehkr/useful'
 
 const isIdle = useIdleTimeout({
   timeout: 30000, // 30 seconds of inactivity
@@ -27,7 +27,7 @@ This hook takes a single argument, a [React ref](https://react.dev/learn/referen
 Here's an example of how you can use the `useElementSize` hook in your React component:
 
 ```tsx
-import { useIdleTimeout } from '@ridgehkr/usefulHooks'
+import { useIdleTimeout } from '@ridgehkr/useful'
 
 const App = () => {
   const isIdle = useIdleTimeout({

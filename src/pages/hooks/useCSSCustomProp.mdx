@@ -9,12 +9,14 @@ This hook allows you to monitor the current value of a CSS custom property in yo
 2. Import and use the `useCSSCustomProp` hook in your component:
 
 ```tsx
-import { useCSSCustomProp } from '@ridgehkr/usefulHooks'
+import { useCSSCustomProp } from '@ridgehkr/useful'
 ```
 
 ### Example
 
-`useCSSCustomProp` will track the value of a CSS custom prop for you and returns a string reflecting the current value:
+`useCSSCustomProp` tracks the value of a CSS custom prop for you and returns a string reflecting its current value.
+
+#### In your CSS:
 
 ```css /--theme-color/ filename="CSS"
 :root {
@@ -22,9 +24,9 @@ import { useCSSCustomProp } from '@ridgehkr/usefulHooks'
 }
 ```
 
-In your React component:
+#### In your React component:
 
-```tsx /--theme-color/ filename="MyComponent.js"
+```tsx /--theme-color/ filename="MyComponent.jsx"
 import { useCSSCustomProp } from '@ridgehkr/useful'
 
 function MyComponent() {
@@ -39,7 +41,7 @@ function MyComponent() {
 
 ### Parameters
 
-The `useCustomCSSProp` hook accepts two parameters:
+`useCustomCSSProp` accepts two parameters:
 
 | Property          | Type                                                                          | Required                    | Description                                                                        |
 | :---------------- | :---------------------------------------------------------------------------- | :-------------------------- | :--------------------------------------------------------------------------------- |
@@ -48,7 +50,7 @@ The `useCustomCSSProp` hook accepts two parameters:
 
 ### Return Value
 
-The hook returns the current value of the specified CSS custom property as a string. If the custom property does not exist or is not set, it returns an empty string.
+`useCustomCSSProp` returns the current value of the specified CSS custom property as a string. If the custom property does not exist or is not set, it returns an empty string.
 
 ## How it Works
 

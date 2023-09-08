@@ -1,1 +1,92 @@
 # `useDebounce()`
+
+The `useDebounce` hook is a custom React hook designed to debounce changes to a given value. Debouncing is a technique used to delay the execution of a function or, in this case, the update of a value until a specified period of inactivity has passed. This is particularly useful when dealing with user input or API calls to avoid excessive and rapid updates.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import and use the `useDebounce` hook in your component:
+
+```tsx
+import { useDebounce } from '@ridgehkr/useful'
+```
+
+### Example
+
+The `useDebounce` hook can be utilized by calling it within a functional component. It takes two parameters. [See the API Reference](#api-reference) for more details on these return values:
+
+- **`value: T`** is the value that you want to debounce.
+- **`delay: number`** is the delay in milliseconds before the value update is propagated.
+
+The hook returns the debounced version of the value:
+
+```tsx filename="useDebounce()"
+const debouncedValue = useDebounce(value, delay)
+```
+
+#### In your CSS:
+
+```css /--theme-color/ filename="CSS"
+:root {
+  --theme-color: #ffcc00;
+}
+```
+
+#### In your React component:
+
+```tsx {2,6} /--theme-color/ filename="DebounceExample.jsx"
+import React, { useState } from 'react'
+import { useDebounce } from '@ridgehkr/useful'
+
+function DebounceExample() {
+  const [inputValue, setInputValue] = useState('')
+  const debouncedInputValue = useDebounce(inputValue, 500)
+
+  const handleInputChange = (e) => {
+    setInputValue(e.target.value)
+  }
+
+  return (
+    <div>
+      <input
+        type='text'
+        placeholder='Type something...'
+        onChange={handleInputChange}
+      />
+      <p>Debounced Value: {debouncedInputValue}</p>
+    </div>
+  )
+}
+```
+
+In this example, the `inputValue` state is being debounced with a delay of 500 milliseconds. The displayed "Debounced Value" will only update once the user has stopped typing for 500 milliseconds.
+
+## API Reference
+
+### Hook Signature
+
+**`useDebounce(value: T, delay: number): T`**
+
+### Parameters
+
+`useDebounce` accepts two parameters:
+
+| Property    | Type     | Required | Description                         |
+| :---------- | :------- | :------- | :---------------------------------- |
+| **`value`** | `T`      | yes      | The value to debounce.              |
+| **`delay`** | `number` | yes      | The debounce delay in milliseconds. |
+
+### Return Value
+
+| Property             | Type | Description                                 |
+| :------------------- | :--- | :------------------------------------------ |
+| **`debouncedValue`** | `T`  | The debounced version of the input `value`. |
+
+## Cleanup
+
+`useDebounce` automatically handles cleanup by canceling the previous timeout when the value or delay changes. This ensures that only the latest value is debounced, preventing unnecessary updates.
+
+## A Note on Debouncing
+
+Keep in mind that debouncing may introduce a slight delay in reflecting the most recent value, which can be a desired behavior in some scenarios but not in others. Make sure to choose an appropriate delay value based on your application's requirements.

@@ -2,23 +2,21 @@ import Install from '../_partials/install.mdx'
 
 # `useDarkMode()`
 
-This hooks monitors the state of an application's dark mode. Dark mode will default to the system settings selected by the user, but can be overridden when the hook is initially called or when `setIsDarkMode()` is invoked. The document root is also automatically given a `dark-mode` class when dark mode is enabled.
-
-The `prefers-color-scheme` media query is used to detect the user's system-wide dark mode preference.
+This hooks manages the state of your application's dark mode. Dark mode will default to the system dark/light mode settings set by the user via the `prefers-color-scheme` media query, but can be overridden when the hook is initially called or when `setIsDarkMode()` is invoked. The document root is also automatically given a `dark-mode` class when dark mode is enabled.
 
 ## Usage
 
-1. Make sure you have `@ridgehkr/usefulHooks` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
 2. Import and use the `useDarkMode` hook in your component.
 
 ```tsx
-import { useDarkMode } from '@ridgehkr/usefulHooks'
+import { useDarkMode } from '@ridgehkr/useful'
 ```
 
-## Example
+## Basic Example
 
-```tsx
+```tsx filename="App.jsx"
 import React from 'react'
 import useDarkMode from 'use-dark-mode-hook'
 
@@ -40,16 +38,18 @@ export default App
 
 ## API
 
+### Hook Signature
+
 **`useDarkMode(initiallyDark?: boolean | null | undefined): DarkModeUsage`**
 
 The `useDarkMode` hook returns an array containing the current dark mode state and a function to toggle dark mode.
 
 #### Parameters
 
-`initiallyDark` (optional): An initial value for the dark mode state. If not provided, the hook will use the system-wide preference by default.
+`initiallyDark` (optional): An initial value for the dark mode state. If not provided, the hook will default to the system-wide preference.
 
 | Property            | Type      | Required | Description                                         |
-| :------------------ | :-------- | :------- | --------------------------------------------------- |
+| :------------------ | :-------- | :------- | :-------------------------------------------------- |
 | **`initiallyDark`** | `boolean` | no       | Whether or not dark mode should be initially active |
 
 #### Return Value
@@ -57,25 +57,17 @@ The `useDarkMode` hook returns an array containing the current dark mode state a
 The hook returns an array containing:
 
 | Property            | Type                          | Description                                  |
-| :------------------ | :---------------------------- | -------------------------------------------- |
+| :------------------ | :---------------------------- | :------------------------------------------- |
 | **`isDarkMode`**    | `boolean`                     | Whether or not dark mode is currently active |
 | **`setIsDarkMode`** | `(darkMode: boolean) => void` | Manually set the dark mode state             |
 
-##### Return Value Usage
+##### `setIsDarkMode` Example Usage
 
-**`isDarkMode` (boolean)**\
-Whether or not dark mode is currently enabled.
+`setIsDarkMode` is used to manually set the dark mode state. `true` activates it and `false` deactivates it.
 
-```tsx
-console.log(isDarkMode) // true/false
-```
-
-**`setIsDarkMode` (function)**\
-A function that accepts a boolean to toggle the dark mode state.
-
-```tsx
+```tsx filename="setIsDarkMode()"
 // activate dark mode
 setIsDarkMode(true)
 
-console.log(isDarkMode) // true
+console.log(isDarkMode) // "true"
 ```
