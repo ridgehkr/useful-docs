@@ -1,1 +1,49 @@
-# `useOnlineStatus()`
+# useOnlineStatus
+
+This hook is designed to help you monitor the online status of a user within your web application. It provides a simple and convenient way to determine whether the user's device is currently connected to the internet.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import and use the `useOnlineStatus` hook in your component:
+
+Here's a simple example of how you can use the `useOnlineStatus` hook in a React functional component:
+
+```jsx filename="OnlineStatusComponent.jsx"
+import React from 'react'
+import { useOnlineStatus } from '@ridgehkr/useful'
+
+function OnlineStatusComponent() {
+  const isOnline = useOnlineStatus()
+
+  return (
+    <div>
+      {isOnline ? (
+        <p>You are currently online.</p>
+      ) : (
+        <p>You are currently offline.</p>
+      )}
+    </div>
+  )
+}
+
+export default OnlineStatusComponent
+```
+
+In this example, the return from `useOnlineStatus` toggles a status message indicating whether the user is currently online or offline.
+
+## How It Works
+
+The hook tracks online status using the value of [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine), which is a property provided by the browser's Navigator object. It represents the user's online status when the page initially loads.
+
+## Parameters
+
+The `useOnlineStatus` hook does not accept any parameters.
+
+## Return Value
+
+The hook returns a boolean indicating whether the user is currently online or offline.
+
+- **`true`** - The user is currently online.
+- **`false`** - The user is currently offline.
