@@ -12,7 +12,7 @@
   "useLocalStorage": "useLocalStorage",
   "useMediaQuery": "useMediaQuery",
   "useOnlineStatus": "useOnlineStatus",
-  "useRandomStringGenerator": "useRandomStringGenerator",
+  "useRandomString": "useRandomString",
   "useScrollPosition": "useScrollPosition",
   "useSessionStorage": "useSessionStorage",
   "useSlideshow": "useSlideshow",
