@@ -11,6 +11,7 @@
   "useList": "useList",
   "useLocalStorage": "useLocalStorage",
   "useMediaQuery": "useMediaQuery",
+  "useMousePosition": "useMousePosition",
   "useOnlineStatus": "useOnlineStatus",
   "useRandomString": "useRandomString",
   "useScrollPosition": "useScrollPosition",
