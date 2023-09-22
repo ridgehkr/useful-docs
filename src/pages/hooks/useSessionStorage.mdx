@@ -16,11 +16,11 @@ import { useSessionStorage } from '@ridgehkr/useful'
 
 ## Example
 
-```tsx
+```tsx filename="MyComponent.tsx"
 import { useState } from 'react'
 import { useSessionStorage } from '@ridgehkr/useful'
 
-function App() {
+function MyComponent() {
   const [name, setName] = useState('')
   const { value, setStoredValue, deleteStoredValue } = useSessionStorage(
     'user_name',
@@ -46,6 +46,8 @@ function App() {
     </div>
   )
 }
+
+export default MyComponent
 ```
 
 ## API

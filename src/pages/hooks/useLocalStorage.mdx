@@ -16,11 +16,13 @@ import { useLocalStorage } from '@ridgehkr/useful'
 
 ## Example
 
-```tsx
+This is a simple example of how you can use the `useLocalStorage` hook to store a user's name in local storage. The name is then retrieved from local storage and displayed in a greeting.
+
+```tsx filename="UserGreeting.tsx"
 import { useState } from 'react'
 import { useLocalStorage } from '@ridgehkr/useful'
 
-function App() {
+function UserGreeting() {
   const [name, setName] = useState('')
   const { value, setStoredValue, deleteStoredValue } = useLocalStorage(
     'user_name',
@@ -46,6 +48,8 @@ function App() {
     </div>
   )
 }
+
+export default UserGreeting
 ```
 
 ## API

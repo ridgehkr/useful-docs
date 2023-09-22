@@ -8,13 +8,13 @@ This hook is designed to help you monitor the online status of a user within you
 
 2. Import and use the `useOnlineStatus` hook in your component:
 
-Here's a simple example of how you can use the `useOnlineStatus` hook in a React functional component:
+Here's a simple example of how you can use the `useOnlineStatus` hook in a React component:
 
-```jsx filename="OnlineStatusComponent.jsx"
+```jsx filename="OnlineStatus.jsx"
 import React from 'react'
 import { useOnlineStatus } from '@ridgehkr/useful'
 
-function OnlineStatusComponent() {
+function OnlineStatus() {
   const isOnline = useOnlineStatus()
 
   return (
@@ -28,7 +28,7 @@ function OnlineStatusComponent() {
   )
 }
 
-export default OnlineStatusComponent
+export default OnlineStatus
 ```
 
 In this example, the return from `useOnlineStatus` toggles a status message indicating whether the user is currently online or offline.

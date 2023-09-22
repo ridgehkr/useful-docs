@@ -16,9 +16,9 @@ import { useRandomString } from '@ridgehkr/useful'
 
 The `useRandomString` hook takes two parameters: the `value` that you want to throttle and an optional `interval` in milliseconds. It returns the throttled value, which is updated no more frequently than the specified `interval`.
 
-Here's an example of how you can use the `useRandomString` hook in your React component:
+Here's an example of how you can use the `useRandomString` hook to create a password generator component:
 
-```tsx
+```tsx filename="PasswordGenerator.tsx"
 import './App.css'
 import { useRandomString } from '@ridgehkr/useful'
 
@@ -33,7 +33,7 @@ function App() {
     includeNumbers,
     uppercase,
     includeUppercase,
-  } = usePasswordGenerator()
+  } = useRandomString()
 
   return (
     <div>
@@ -89,7 +89,7 @@ function App() {
   )
 }
 
-export default App
+export default PasswordGenerator
 ```
 
 In this example, the `useRandomString` hook is used to generate a random string based on the current settings. The resulting string is updated automatically whenever the settings are changed.
