@@ -1,6 +1,6 @@
-# usefulHooks Documentation
+# Useful: Documentation
 
-This is a documentation site for [Useful](https://usefulhooks.com/).
+This is the documentation project for [Useful](https://usefulhooks.com/).
 
 ## Development
 
@@ -10,8 +10,6 @@ First, run the development server:
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
@@ -20,7 +18,7 @@ You can edit all pages within `src/pages/`. The development site will auto-updat
 
 ## Notes
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This documentation site was built with [Nextra](https://nextra.site/).
 
 ## Author
 
@@ -28,4 +26,4 @@ This documentation as well as its sister project [Useful](https://usefulhooks.co
 
 ## License
 
-This project is licensed under the MIT license. See `LICENSE.txt` for details.
+This project is licensed under the [MIT license](./LICENSE.txt).
