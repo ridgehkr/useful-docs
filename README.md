@@ -12,9 +12,7 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can edit all pages within `src/pages/`. The development site will auto-updates when you save changes.
+You can edit all page content within `src/pages/`. The development site will auto-updates when you save changes.
 
 ## Notes
 
