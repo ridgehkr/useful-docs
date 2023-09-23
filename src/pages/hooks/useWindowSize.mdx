@@ -1,17 +1,21 @@
 # useWindowSize
 
-The `useWindowSize` hooks allows you to get the current size of the browser window. When the window is resized, the hook will update the returned values.
+This hook allows you to track the current width and height of the browser window in pixels. When the window is resized, these values will automatically update.
 
-## Usage
+## Installation
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useWindowSize` hook in your component:
+2. Import and use the `useWindowSize` hook in your component.
 
-```tsx
+## Usage
+
+The `useWindowSize` hook doesn't take any parameters. It returns an object with the current width and height in pixels of the browser window. The following is a basic example that displays the current window size:
+
+```tsx /useWindowSize/ filename="WindowSize.tsx"
 import { useWindowSize } from '@ridgehkr/useful'
 
-function App() {
+export const WindowSize = () => {
   const { width, height } = useWindowSize()
 
   return (
@@ -22,19 +26,19 @@ function App() {
       <p>
         Window height: <strong>{height}</strong>
       </p>
-      <p>(Resize the window to see how the width and height values change.)</p>
+      <p>Resize the window to see how the width and height values change.</p>
     </div>
   )
 }
-
-export default App
 ```
 
-## Parameters
+## API Reference
 
-The useElementSize hook does not accept any parameters.
+### Parameters
 
-## Return Value
+`useElementSize` does not accept any parameters.
+
+### Return Value
 
 The hook returns an object with the following properties:
 
