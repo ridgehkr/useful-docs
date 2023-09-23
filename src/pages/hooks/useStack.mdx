@@ -1,59 +1,55 @@
 # useStack
 
-This is a custom hook for managing a Stack data structure in a React application. A stack is a Last-In-First-Out (LIFO) data structure where elements are added and removed from the top.
+This hook manages a Stack abstract data type. A stack is a Last-In-First-Out (LIFO) data model where elements are added to and removed from the top only. You can learn more about how stacks work [on Wikipedia](<https://en.wikipedia.org/wiki/Stack_(abstract_data_type)>) or the [NIST](https://xlinux.nist.gov/dads/HTML/stack.html).
 
-## Usage
+## Installation
 
 To use this custom hook in your React project, you can follow these steps:
 
 1. Copy the `./src/hooks/useStack.ts` file from this sandbox into your project.
-2. Import and use the useStack hook in your components:
+2. Import and use the useStack hook in your component.
 
-```ts filename="MyComponent.tsx"
+## Usage
+
+```tsx /useStack/ filename="Stack.tsx"
 import React from 'react'
 import useStack from './path/to/useStack.ts'
 
-function MyComponent() {
+export const Stack = () => {
   const stack = useStack<number>()
 
-  stack.push(1)
-  stack.push(2)
+  useEffect(() => {
+    console.log('useEffect', stack.items)
 
-  console.log('Stack:', stack.items)
-  console.log('Peek:', stack.peek())
-  console.log('Pop:', stack.pop())
-  console.log('Size:', stack.size)
+    stack.push(1)
+    stack.push(2)
 
-  return <div>{/* JSX content */}</div>
+    console.group('Stack')
+    console.log('Stack:', stack.items) // [1, 2]
+    console.log('Peek:', stack.peek()) // 2
+    console.log('Pop:', stack.pop()) // 2
+    console.log('Size:', stack.size()) // 1
+    console.groupEnd()
+  }, [])
+
+  return <p>See console for stack details.</p>
 }
-
-export default MyComponent
 ```
 
-## API
+## API Reference
 
-The useStack hook returns an object with the following methods:
+### Parameters
 
-### `push(item: T)`
+`useElementSize` does not accept any parameters.
 
-Pushes an item onto the top of the stack.
+### Return Value
 
-### `pop(): T | undefined`
+`useStack` returns an object with the following methods:
 
-Removes and returns the top item from the stack.
-
-### `peek(): T | undefined`
-
-Returns the top item from the stack without removing it.
-
-### `size: number`
-
-Returns the number of items in the stack.
-
-### `items: T[]`
-
-An array containing the items in the stack.
-
----
-
-Built by [Caleb Pierce](https://calebpierce.dev/).
+| Property    | Signature         | Returns                                              | Description                                     |
+| :---------- | :---------------- | :--------------------------------------------------- | :---------------------------------------------- |
+| **`push`**  | `(item: T) => {}` | `void`                                               | Pushes an item onto the top of the stack        |
+| **`pop`**   | `() => {}`        | The popped item or `undefined` if the stack is empty | Removes and returns the top item from the stack |
+| **`peek`**  | `() => {}`        | The top item or `undefined` if the stack is empty    | Returns the top item from the stack             |
+| **`size`**  | `() => {}`        | The number of items in the stack                     | Returns the number of items in the stack        |
+| **`items`** | `() => {}`        | An array containing the items in the stack           | Returns the items in the stack                  |
