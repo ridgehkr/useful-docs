@@ -2,50 +2,60 @@
 
 The `useThrottle` hook is a custom React hook that allows you to limit the frequency of a value changing to once every specified interval (defaults to 400ms). This can be especially useful when dealing with fast-changing values, such as those updated in response to user input or external events. The hook helps prevent excessive re-renders and improves performance by ensuring that the value updates are throttled to a specified interval.
 
-## Usage
+## Installation
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
 2. Import and use the `useThrottle` hook in your component.
 
-## Example
+## Usage
 
 The `useThrottle` hook takes two parameters: the `value` that you want to throttle and an optional `interval` in milliseconds. It returns the throttled value, which is updated no more frequently than the specified `interval`.
 
-Here's an example of how you can use the `useThrottle` hook in your React component:
+This is a basic example where `useThrottle` is used to limit the update frequency of a search input's value:
 
-```tsx filename="MyComponent.tsx"
+```tsx filename="SearchForm.tsx"
 import React, { useState } from 'react'
-import { useFetch } from '@ridgehkr/useful'
+import { useThrottle } from '@ridgehkr/useful'
 
-function MyComponent() {
-  const [inputValue, setInputValue] = useState('')
-  const throttledValue = useThrottle<string>(inputValue, 600) // throttle to 600ms
+export const SearchInput = () => {
+  const [inputValue, setInputValue] = useState<string>('')
+  const throttledValue = useThrottle<string>(inputValue, 600)
 
-  // handle search input change
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newValue = event.target.value
-    setInputValue(newValue)
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value)
   }
 
   return (
-    <div>
-      <input type='text' value={inputValue} onChange={handleChange} />
-      <p>Search functionality is throttle to 600ms.</p>
-      {throttledValue && <p>Searching for: {throttledValue}</p>}
+    <div className={style.demo}>
+      <header className={style.header}>
+        <h1>useThrottle</h1>
+      </header>
+
+      <p>
+        <input onChange={handleInputChange} />
+      </p>
+      <p>
+        Throttled input value: <strong>{throttledValue}</strong>
+      </p>
     </div>
   )
 }
-
-export default MyComponent
 ```
 
-In this example, the `inputValue` is updated whenever the user types in the input field. However, the actual rendering of the throttled value (`throttledValue`) will only occur at most once every 600 milliseconds. This prevents excessive re-renders when the user is rapidly typing.
+The `inputValue` state value is updated whenever the user types in the input field. However, the actual rendering of the throttled value (`throttledValue`) will only occur at most once every 600 milliseconds. This prevents excessive re-renders when the user is rapidly typing.
 
-## Parameters
+## API Reference
 
-- **`value`** (required)\
-  The value you want to throttle, which could be any data type (e.g., string, number, object, etc.).
+### Parameters
 
-- **`interval`** (optional, default: 400)\
-  The interval in milliseconds between updates of the throttled value. This determines how often the throttled value is updated. If the time between updates is less than the specified interval, the updates are ignored.
+| Property       | Type   | Description                                                         |
+| :------------- | :----- | :------------------------------------------------------------------ |
+| **`value`**    | any    | The value you want to throttle                                      |
+| **`interval`** | number | The interval in milliseconds between updates of the throttled value |
+
+### Return Value
+
+| Property             | Type | Description                                                                 |
+| :------------------- | :--- | :-------------------------------------------------------------------------- |
+| **`throttledValue`** | any  | The throttled value, which is updated no more frequently than the interval. |
