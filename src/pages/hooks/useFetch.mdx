@@ -15,15 +15,15 @@ This hook allows you to easily fetch data from a given URL. It manages the fetch
 The hook [returns](#api) an object containing various properties and methods to facilitate data fetching. Here's how you can use it in your component:
 
 ```tsx
-import React from 'react'
+import { useEffect } from 'react'
 import { useFetch } from '@ridgehkr/useful'
 
-const MyComponent = () => {
+export default function FetchComponent() {
   const { load, data, loading, error } = useFetch()
 
   // Load data when the component mounts
-  React.useEffect(() => {
-    load('https://api.example.com/data')
+  useEffect(() => {
+    load('https://swapi.dev/api/people/1')
   }, [])
 
   if (loading) {
@@ -36,16 +36,15 @@ const MyComponent = () => {
 
   return (
     <div>
-      {/* Render data */}
       <pre>{JSON.stringify(data, null, 2)}</pre>
     </div>
   )
 }
-
-export default MyComponent
 ```
 
-## API
+## API Reference
+
+### Hook Signature
 
 **`useFetch(converter?: ConverterFunction<T>)`**\
 
@@ -58,14 +57,13 @@ A function that takes the fetched data as an argument and returns a value of typ
 
 The hook returns an object with the following properties:
 
-- `load(url: string, options?: RequestInit)`\
-  A function that initiates the data fetching process from the specified URL. Additional options can be provided to configure the fetch request.
+| Property      | Type                      | Description                                                                                                        |
+| :------------ | :------------------------ | :----------------------------------------------------------------------------------------------------------------- |
+| **`load`**    | `(url: string, options?)` | A function that initiates the data fetching process from the specified URL                                         |
+| **`data`**    | `T` \| `undefined`        | The fetched data. It will be undefined until the data is successfully fetched and processed                        |
+| **`loading`** | `boolean`                 | A boolean indicating whether the data is currently being fetched                                                   |
+| **`error`**   | `string` \| `null`        | An error message that provides information about any fetch-related errors. It will be null if there are no errors. |
 
-- `data: T | undefined`\
-  The fetched data. It will be undefined until the data is successfully fetched and processed.
+#### A note on the `load` function
 
-- `loading: boolean`\
-  A boolean indicating whether the data is currently being fetched.
-
-- `error: string | null`\
-  An error message that provides information about any fetch-related errors. It will be null if there are no errors.
+An additional `options` object can be provided to configure the fetch request. This will be directly passed into the `fetch` function. For more information, see the [fetch documentation](https://developer.mozilla.org/en-US/docs/Web/API/fetch#options).

@@ -18,25 +18,16 @@ This hook takes a single argument, a [React ref](https://react.dev/learn/referen
 
 Here's an example of how you can use the `useElementSize` hook in your React component:
 
-```tsx
+```tsx /useElementSize/ filename="ResizingBox.tsx"
 import { useElementSize } from '@ridgehkr/useful'
 
-function App() {
-  const sizeRef = useRef<HTMLDivElement>(null)
-  const { width, height, offsetWidth, offsetHeight } = useElementSize(sizeRef)
+function ResizingBox() {
+  const sizeRef = useRef<HTMLTextAreaElement>(null)
+  const { width, height } = useElementSize(sizeRef)
   const [modSize, setModSize] = useState(200)
 
   return (
     <div>
-      <h1>Use Element Size</h1>
-
-      <p>
-        This is a box that is originally 500px square, but has been scaled in
-        half via `transform`. The width and height are the actual rendered size,
-        while the offset width and height represent how much rendered space the
-        box takes up on the page.
-      </p>
-
       <p>
         <label>
           Change box size:
@@ -61,7 +52,6 @@ function App() {
           border: '1px solid black',
           backgroundColor: '#cfcfcf',
           resize: 'both',
-          transform: 'scale(0.5)',
         }}
         ref={sizeRef}
       />
@@ -71,38 +61,35 @@ function App() {
         width: <code>{width}</code>
         <br />
         height: <code>{height}</code>
-        <br />
-        offset width: <code>{offsetWidth}</code>
-        <br />
-        offset height: <code>{offsetHeight}</code>
-        <br />
       </p>
     </div>
   )
 }
-
-export default App
 ```
 
-## Parameters
+## API Reference
 
-The useElementSize hook takes a single argument:
+### Hook Signature
 
-ref: A React ref that points to the DOM element you want to monitor for size changes.
+**`useElementSize(ref: React.RefObject<HTMLElement>): { width: number, height: number }`**
 
-| Parameter |                            Type                             | Required? | Description                                  |
-| :-------- | :---------------------------------------------------------: | --------: | -------------------------------------------- |
-| **`ref`** | [ref](https://react.dev/learn/referencing-values-with-refs) |      true | A ref of the DOM element to get the size of. |
+### Parameters
 
-## Return Value
+The useElementSize hook takes a single argument, a [React ref](https://react.dev/learn/referencing-values-with-refs) that points to the DOM element you want to monitor for size changes.
+
+| Parameter | Type                           | Required? | Description                                  |
+| :-------- | :----------------------------- | :-------- | :------------------------------------------- |
+| **`ref`** | `React.RefObject<HTMLElement>` | true      | A ref of the DOM element to get the size of. |
+
+### Return Value
 
 The hook returns an object with the following properties:
 
-| Property     |  Type  |                                           Description |
-| :----------- | :----: | ----------------------------------------------------: |
-| **`width`**  | number |  The current width of the monitored element in pixels |
-| **`height`** | number | The current height of the monitored element in pixels |
+| Property     | Type   | Description                                           |
+| :----------- | :----- | :---------------------------------------------------- |
+| **`width`**  | number | The current width in pixels of the monitored element  |
+| **`height`** | number | The current height in pixels of the monitored element |
 
-### `width` and `height`
+#### A note on `width` and `height`
 
-These are the [offsetWidth](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetWidth) and [offsetHeight](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetHeight) dimensions of the element's content box. This is the area inside of the element's padding, border, while ignoring any pseudo-elements.
+These values represent the [offsetWidth](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetWidth) and [offsetHeight](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetHeight) dimensions of the element's content box. This is the area inside of the element's padding and border, while ignoring any pseudo-elements.
