@@ -1,6 +1,6 @@
 # useDebounce
 
-The `useDebounce` hook is a custom React hook designed to debounce changes to a given value. Debouncing is a technique used to delay the execution of a function or, in this case, the update of a value until a specified period of inactivity has passed. This is particularly useful when dealing with user input or API calls to avoid excessive and rapid updates.
+This hook is designed to debounce updates to a given value. Debouncing is a technique used to delay the execution of a function or, in this case, the update of a value until a specified period of inactivity has passed. This is particularly useful when dealing with user input or API calls to avoid excessive and rapid updates.
 
 ## Usage
 
@@ -14,23 +14,15 @@ import { useDebounce } from '@ridgehkr/useful'
 
 ### Example
 
-The `useDebounce` hook can be utilized by calling it within a functional component. It takes two parameters. [See the API Reference](#api-reference) for more details on these return values:
+`useDebounce` can be utilized by calling it within a functional component. It takes two parameters. [See the API Reference](#api-reference) for more details on these return values:
 
 - **`value: T`** is the value that you want to debounce.
 - **`delay: number`** is the delay in milliseconds before the value update is propagated.
 
 The hook returns the debounced version of the value:
 
-```tsx filename="useDebounce()"
+```tsx
 const debouncedValue = useDebounce(value, delay)
-```
-
-#### In your CSS:
-
-```css /--theme-color/ filename="CSS"
-:root {
-  --theme-color: #ffcc00;
-}
 ```
 
 #### In your React component:
@@ -82,10 +74,6 @@ In this example, the `inputValue` state is being debounced with a delay of 500 m
 | Property             | Type | Description                                 |
 | :------------------- | :--- | :------------------------------------------ |
 | **`debouncedValue`** | `T`  | The debounced version of the input `value`. |
-
-## Cleanup
-
-`useDebounce` automatically handles cleanup by canceling the previous timeout when the value or delay changes. This ensures that only the latest value is debounced, preventing unnecessary updates.
 
 ## A Note on Debouncing
 
