@@ -21,7 +21,7 @@ import React from 'react'
 import useDarkMode from 'use-dark-mode-hook'
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useDarkMode()
+  const { isDarkMode, setIsDarkMode } = useDarkMode()
 
   return (
     <div>
@@ -42,7 +42,7 @@ export default App
 
 **`useDarkMode(initiallyDark?: boolean | null | undefined): DarkModeUsage`**
 
-The `useDarkMode` hook returns an array containing the current dark mode state and a function to toggle dark mode.
+The `useDarkMode` hook returns an object containing the current dark mode state and a function to toggle dark mode.
 
 #### Parameters
 
@@ -54,7 +54,7 @@ The `useDarkMode` hook returns an array containing the current dark mode state a
 
 #### Return Value
 
-The hook returns an array containing:
+The hook returns an object containing:
 
 | Property            | Type                          | Description                                  |
 | :------------------ | :---------------------------- | :------------------------------------------- |
