@@ -14,11 +14,11 @@ This hook allows you to easily fetch data from a given URL. It manages the fetch
 
 The hook [returns](#api) an object containing various properties and methods to facilitate data fetching. Here's how you can use it in your component:
 
-```tsx
+```tsx /useFetch/ filename="FetchPeople.tsx"
 import { useEffect } from 'react'
 import { useFetch } from '@ridgehkr/useful'
 
-export default function FetchComponent() {
+export default function FetchPeople() {
   const { load, data, loading, error } = useFetch()
 
   // Load data when the component mounts
@@ -46,7 +46,7 @@ export default function FetchComponent() {
 
 ### Hook Signature
 
-**`useFetch(converter?: ConverterFunction<T>)`**\
+**`useFetch(converter?: ConverterFunction<T>)`**
 
 ### Parameters
 

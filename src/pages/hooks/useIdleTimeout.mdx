@@ -10,53 +10,43 @@ This utility hook helps you track user activity and trigger actions when the use
 
 ```tsx
 import { useIdleTimeout } from '@ridgehkr/useful'
-
-const isIdle = useIdleTimeout({
-  timeout: 30000, // 30 seconds of inactivity
-  onIdle: () => {
-    // Your code to execute when the user becomes idle
-    console.log('User is idle.')
-  },
-})
 ```
 
-## Example
+### Example
 
-This hook takes a single argument, a [React ref](https://react.dev/learn/referencing-values-with-refs) pointing to the DOM element you want the sizing information of. It returns an object containing the element's size information.
+`useIdleTimeout` is used to monitor user activity, and it updates its boolean return value to indicate whether the user is idle or active:
 
-Here's an example of how you can use the `useElementSize` hook in your React component:
-
-```tsx
+```tsx /useIdleTimeout/ filename="IdleMonitor.tsx"
 import { useIdleTimeout } from '@ridgehkr/useful'
 
-const App = () => {
-  const isIdle = useIdleTimeout({
-    timeout: 30000, // 30 seconds of inactivity
-    onIdle: () => {
-      // Your code to execute when the user becomes idle
-      console.log('User is idle.')
-    },
-  })
+export default function IdleMonitor() {
+  // trigger after 30 seconds of inactivity
+  const isIdle = useIdleTimeout(30000)
 
+  // Idle: "User is idle."
+  // Active: "User is active."
   return <div>{isIdle ? <p>User is idle.</p> : <p>User is active.</p>}</div>
 }
-
-export default App
 ```
 
-In this example, the `useIdleTimeout` hook is used to monitor user activity, and it updates the `isIdle` variable to indicate whether the user is idle or active. The `onIdle` callback is executed when the user becomes idle, allowing you to perform specific actions in response to user inactivity.
+## API Reference
 
-## Parameters
+### Hook Signature
 
-The useElementSize hook takes a single argument:
+**`useIdleTimeout(timeout: number): boolean`**
 
-ref: A React ref that points to the DOM element you want to monitor for size changes.
+### Parameters
 
-| Parameter     |   Type   | Required? | Description                                                                                                                                               |
-| :------------ | :------: | --------: | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`timeout`** |  number  |      true | The duration (in milliseconds) of user inactivity required to trigger the idle state and execute the `onIdle` callback.                                   |
-| **`onIdle`**  | function |      true | A callback function that will be executed when the user becomes idle. This is where you can define the actions you want to perform when the user is idle. |
+useIdleTimeout accepts a single argument; the number of milliseconds of inactivity required to trigger the idle state.
+
+| Parameter     | Type     | Required | Description                                                                           |
+| :------------ | :------- | :------- | ------------------------------------------------------------------------------------- |
+| **`timeout`** | `number` | yes      | The duration (in milliseconds) of user inactivity required to trigger the idle state. |
 
 ## Return Value
 
 The `useIdleTimeout` hook returns a boolean value indicating whether the user is currently idle (`true`) or active (`false`).
+
+| Property     | Type   | Description                             |
+| :----------- | :----- | :-------------------------------------- |
+| **`isIdle`** | number | Whether or not the idle state is active |
