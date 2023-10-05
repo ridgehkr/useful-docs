@@ -8,17 +8,56 @@ The `useThrottle` hook is a custom React hook that allows you to limit the frequ
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useThrottle` hook in your component.
+2. Import and use the `useIntersectionObserver` hook in your component:
+
+```tsx
+import { useIntersectionObserver } from '@ridgehkr/useful'
+```
 
 ## Example
 
 In the following example, `useIntersectionObserver` is used to lazy-load a set of images, only rendering images that are currently in the viewport.
 
-```tsx
-import images from './images'
+```tsx /useIntersectionObserver/ filename="LazyLoader.tsx"
 import { useIntersectionObserver } from '@ridgehkr/useful'
 
-const Figure = ({ src, caption }) => {
+type FigureProps = {
+  src: string
+  caption: string
+}
+
+const images = [
+  {
+    src: 'https://picsum.photos/1000/500',
+    caption: 'First Image',
+  },
+  {
+    src: 'https://picsum.photos/1000/620',
+    caption: 'Second Image',
+  },
+  {
+    src: 'https://picsum.photos/1000/750',
+    caption: 'Third Image',
+  },
+  {
+    src: 'https://picsum.photos/1000/800',
+    caption: 'Fourth Image',
+  },
+  {
+    src: 'https://picsum.photos/1000/400',
+    caption: 'Fifth Image',
+  },
+  {
+    src: 'https://picsum.photos/1100/500',
+    caption: 'Sixth Image',
+  },
+  {
+    src: 'https://picsum.photos/1000/560',
+    caption: 'Seventh Image',
+  },
+]
+
+const Figure = ({ src, caption }: FigureProps) => {
   const { ref, entry } = useIntersectionObserver({
     threshold: 0,
     root: null,
@@ -39,41 +78,32 @@ const Figure = ({ src, caption }) => {
   )
 }
 
-function App() {
+export default function LazyLoader() {
   return (
     <div>
-      <header>
-        <h1>Lazy-Load Images</h1>
-      </header>
-
       {images.map(({ src, caption }, index) => {
         return <Figure key={index} src={src} caption={caption} />
       })}
     </div>
   )
 }
-
-export default App
 ```
-
-In this example, the `inputValue` is updated whenever the user types in the input field. However, the actual rendering of the throttled value (`throttledValue`) will only occur at most once every 600 milliseconds. This prevents excessive re-renders when the user is rapidly typing.
 
 ## API
 
-The `IntersectionObserverOptions` are passed directly into the `IntersectionObserver` constructor. You can read [the full documentation for these options on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#intersection_observer_options).
+### Hook Signature
 
-### `useIntersectionObserver(options: IntersectionObserverOptions)`
+**`useIntersectionObserver(options: IntersectionObserverOptions)`**
 
-- **`root`** `(HTMLElement | null)`\
-  The element that is used as the viewport for checking the visibility of the target. Can be null or an HTMLElement.
-- **`rootMargin`** `(string)`\
-  A margin around the root element to adjust the intersection area.
-- **`threshold`** `(number | number[])`\
-  Either a single number or an array of numbers indicating the proportion of the target element's visibility needed to trigger the observer's callback.
+### Parameters
+
+The `IntersectionObserverOptions` are passed directly into the `IntersectionObserver` constructor. You can read [the full documentation for these options on MDN](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API#creating_an_intersection_observer).
 
 ### Return Value
 
-- **`ref`**\
-  A [React ref](https://react.dev/reference/react/useRef) that should be assigned to the element you want to observe.
-- **`entry`**\
-  An instance of IntersectionObserverEntry containing information about the intersection of the observed element.
+`useIntersectionObserver` returns an object containing a React ref and an instance of `IntersectionObserverEntry`:
+
+| Property    | Type                                                                                                      | Description                                                                                                     |
+| :---------- | :-------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| **`ref`**   | [React ref](https://react.dev/reference/react/useRef)                                                     | A React ref that should be assigned to the element you want to observe.                                         |
+| **`entry`** | [`IntersectionObserverEntry`](https://developer.mozilla.org/en-US/docs/Web/API/IntersectionObserverEntry) | An instance of IntersectionObserverEntry containing information about the intersection of the observed element. |
