@@ -2,13 +2,13 @@ import Install from '../_partials/install.mdx'
 
 # useSessionStorage
 
-The `useSessionStorage()` hook provides a convenient way to manage data persistence in the browser's local storage. This can be particularly useful for maintaining user preferences or storing small pieces of data that need to persist across sessions.
+The `useSessionStorage()` hook provides a convenient way to manage data persistence in the browser's session storage. This can be particularly useful for maintaining user preferences or storing small pieces of data that need to persist across sessions.
 
 ## Usage
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useSessionStorage` hook in your component.
+2. Import `useSessionStorage` into your component.
 
 ```tsx
 import { useSessionStorage } from '@ridgehkr/useful'
@@ -16,21 +16,20 @@ import { useSessionStorage } from '@ridgehkr/useful'
 
 ## Example
 
-```tsx filename="MyComponent.tsx"
+This is a simple example of how to store a user's name in session storage. The name is then retrieved and displayed in a greeting. See the [API Reference](#api-reference) for more details on the return value of the hook.
+
+```tsx /useSessionStorage/ filename="SessionStorageManager.tsx"
 import { useState } from 'react'
 import { useSessionStorage } from '@ridgehkr/useful'
 
-function MyComponent() {
+export default function SessionStorageManager() {
   const [name, setName] = useState('')
-  const { value, setStoredValue, deleteStoredValue } = useSessionStorage(
-    'user_name',
-    ''
-  )
+  const { value, setStoredValue, deleteStoredValue } =
+    useSessionStorage<string>('user_name', '')
 
-  const handleNameChange = (event) => {
-    const newName = event.target.value
-    setName(newName)
-    setStoredValue(newName)
+  const handleNameChange = (value: string) => {
+    setName(value)
+    setStoredValue(value)
   }
 
   return (
@@ -39,30 +38,34 @@ function MyComponent() {
       <input
         type='text'
         value={name}
-        onChange={handleNameChange}
+        onChange={(e) => handleNameChange(e.target.value)}
         placeholder='Enter your name'
       />
       <button onClick={deleteStoredValue}>Clear Name</button>
     </div>
   )
 }
-
-export default MyComponent
 ```
 
-## API
+## API Reference
 
-**`useSessionStorage(key: string, initialValue: any)`**
+**`useSessionStorage(key: string, initialValue: T)`**
 
-The `useSessionStorage` hook takes two parameters: `key` and `initialValue`. The `key` is a unique identifier for the stored value in local storage, while `initialValue` is the default value to use if no stored value is found.
+### Parameters
 
-#### Return Value
+The `useSessionStorage` hook takes two parameters: `key` and `initialValue`. The `key` is a unique identifier for the stored value in session storage, while `initialValue` is the default value to use if no stored value is found.
 
-An object with the following properties:
+| Property           | Type     | Required | Description                                        |
+| :----------------- | :------- | :------- | :------------------------------------------------- |
+| **`key`**          | `string` | yes      | The unique identifier of the session storage value |
+| **`initialValue`** | `T`      | no       | The initial value                                  |
 
-- `value`\
-  The current value stored in local storage for the provided key.
-- `setStoredValue(newValue: T)`\
-  A function to update the stored value for the provided key.\
-- `deleteStoredValue()`\
-  A function to delete the stored value for the provided key and reset it to the initial value.
+### Return Value
+
+`useSessionStorage` returns an object with the following properties:
+
+| Property                | Type                    | Description                                                                    |
+| :---------------------- | :---------------------- | :----------------------------------------------------------------------------- |
+| **`value`**             | `T`                     | The current value stored in session storage for the provided key               |
+| **`setStoredValue`**    | `(newValue: T) => void` | Update the stored value for the provided key                                   |
+| **`deleteStoredValue`** | `() => void`            | Delete the stored value for the provided key and reset it to the initial value |

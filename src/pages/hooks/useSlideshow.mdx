@@ -1,145 +1,108 @@
 # useSlideshow
 
-The `useSlideshow` hook is designed to manage the state of a slideshow component in your React application. It provides methods for adding and removing slides, as well as controlling the currently active slide. This hook is simple yet powerful, handling the business logic of a slideshow while allowing you to only need to worry about the interactive components in your slideshow.
+The `useSlideshow` hook is designed to manage the state of a slideshow. It provides methods for adding and removing slides as well as navigating between slides. It also provides information about the current state of the slideshow, such as the slides themselves and the index of the active slide.
+
+(_Note that a slideshow displays one item at a time, while a carousel displays multiple items._)
 
 ## Usage
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import `useSlideshow` for use in your component:
+2. Import `useSlideshow` into your component.
 
 ```tsx
 import { useSlideshow } from '@ridgehkr/useful'
 ```
 
-### Basic Usage
+### Example
 
-The primary purpose of `useSlideshow` is to manage an asynchronous function. It returns an object that provides information about the state of it and a function to execute it if not immediately invoked.
+```tsx /useSlideshow/ filename="Slideshow.jsx"
+import { useState } from 'react'
+import { useSlideshow } from '@ridgehkr/useful'
 
-```tsx filename="MySlideshow.jsx"
-import React from 'react'
-import useSlideshow from './useSlideshow' // Adjust the import path as needed.
-
-function MySlideshow() {
+export default function SlideshowDemo() {
   const { slides, activeSlideIndex, addSlide, removeSlide, activateSlide } =
-    useSlideshow()
+    useSlideshow<string>(['Slide 1', 'Slide 2', 'Slide 3'])
 
-  // Your component logic here...
+  const [newSlideContent, setNewSlideContent] = useState('')
 
-  return <div>{/* Slideshow rendering logic here... */}</div>
+  const handleAddSlide = () => {
+    if (newSlideContent.trim() !== '') {
+      addSlide(newSlideContent)
+      setNewSlideContent('')
+    }
+  }
+
+  return (
+    <div>
+      <h1>Slideshow Demo</h1>
+      <div>
+        <h2>Slides</h2>
+        <ul>
+          {slides.map((slide, index) => (
+            <li key={index}>
+              {index === activeSlideIndex ? <strong>{slide}</strong> : slide}
+              <button onClick={() => removeSlide(index)}>Remove</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h2>Add New Slide</h2>
+        <input
+          type='text'
+          value={newSlideContent}
+          onChange={(e) => setNewSlideContent(e.target.value)}
+        />
+        <button onClick={handleAddSlide}>Add</button>
+      </div>
+      <div>
+        <h2>Controls</h2>
+        <button
+          onClick={() =>
+            activateSlide(
+              activeSlideIndex === 0 ? slides.length - 1 : activeSlideIndex - 1
+            )
+          }
+        >
+          Previous Slide
+        </button>
+        <button
+          onClick={() => activateSlide((activeSlideIndex + 1) % slides.length)}
+        >
+          Next Slide
+        </button>
+      </div>
+    </div>
+  )
 }
 ```
 
 ## API Reference
 
+### Hook Signature
+
+```tsx
+useSlideshow<T>(initialItems?: T[] = [], loop?: boolean = false)
+```
+
 ### Parameters
 
 The `useSlideshow` hook accepts an optional boolean as its parameter. This allows you to set the looping behavior of your slideshow:
 
-| Property   | Required              | Type      | Description                                                                                       |
-| :--------- | :-------------------- | :-------- | :------------------------------------------------------------------------------------------------ |
-| **`loop`** | no (default: `false`) | `boolean` | Determines whether the slideshow should loop back to the first slide after reaching the last one. |
+| Property           | Required              | Type      | Description                                                            |
+| :----------------- | :-------------------- | :-------- | :--------------------------------------------------------------------- |
+| **`initialItems`** | no                    | `T[]`     | An array of the initial slideshow items                                |
+| **`loop`**         | no (default: `false`) | `boolean` | Whether the slideshow should loop when its beginning or end is reached |
 
 ### Return Value
 
-The `useSlideshow` hook returns an object with the following values:
+`useSlideshow` returns an object with the following values:
 
-#### `addSlide()`
-
-Adds a new slide to the slideshow.
-
-Signature: **`addSlide(slide: T, index?: number): void`**
-
-- **`slide (T)`**: The content of the new slide.
-- **`index (number)`**: The index where the new slide should be added (default: at the end of the slideshow).
-
-#### `removeSlide()`
-
-Removes a slide from the slideshow.
-
-Signature: **`removeSlide(index: number): void`**
-
-- **`index (number)`**: The index of the slide to remove.
-
-#### `activateSlide()`
-
-Activates a slide in the slideshow.
-
-Signature: **`activateSlide(index: number): void`**
-
-- **`index (number)`**: The index of the slide to activate.
-
-## Example:
-
-Here's an example of how you can use all of the return values from the useSlideshow hook to create a basic slideshow:
-
-```tsx filename="Slideshow.tsx"
-import React from 'react'
-import { useSlideshow } from '@ridgehkr/useful'
-
-function Slideshow() {
-  // Initialize the slideshow state using useSlideshow()
-  const { slides, activeSlideIndex, addSlide, removeSlide, activateSlide } =
-    useSlideshow<React.ReactNode>()
-
-  // Add a new slide
-  const handleAddSlide = () => {
-    addSlide(`Slide ${slides.length + 1}: ${slideContent[slides.length]}`)
-  }
-
-  // Remove the active slide
-  const handleRemoveSlide = () => {
-    removeSlide(activeSlideIndex)
-  }
-
-  // Activate a specific slide by index
-  const handleActivateSlide = (index: number) => {
-    activateSlide(index)
-  }
-
-  // Navigate to the previous slide
-  const handlePreviousSlide = () => {
-    activateSlide(activeSlideIndex - 1)
-  }
-
-  // Navigate to the next slide
-  const handleNextSlide = () => {
-    activateSlide(activeSlideIndex + 1)
-  }
-
-  return (
-    <div>
-      <h1>Slideshow</h1>
-      <button onClick={handleAddSlide}>Add Slide</button>
-      <button onClick={handleRemoveSlide}>Remove Active Slide</button>
-      <button onClick={handlePreviousSlide}>Previous Slide</button>
-      <button onClick={handleNextSlide}>Next Slide</button>
-      <ul>
-        {slides.map((slide, index) => (
-          <li
-            key={index}
-            className={
-              index === activeSlideIndex ? 'activeSlide' : 'inactiveSlide'
-            }
-          >
-            <button onClick={() => handleActivateSlide(index)}>{slide}</button>
-          </li>
-        ))}
-      </ul>
-      <ul>
-        {slides.map((_, index) => (
-          <li
-            key={index}
-            className={
-              index === activeSlideIndex ? 'activeSlideDot' : 'inactiveSlideDot'
-            }
-          >
-            <button onClick={() => activateSlide(index)}>&bull;</button>
-          </li>
-        ))}
-      </ul>
-      <p>Total slides: {slides.length}</p>
-    </div>
-  )
-}
-```
+| Property               | Type                                        | Description                                                                   |
+| :--------------------- | :------------------------------------------ | :---------------------------------------------------------------------------- |
+| **`slides`**           | `T[]`                                       | An array of the initial slideshow items                                       |
+| **`activeSlideIndex`** | `number`                                    | The index of the currently active slide                                       |
+| **`addSlide`**         | `(newSlide: T, index?: number): void => {}` | Add a new slide at the end of the slideshow, or at index `index` if specified |
+| **`removeSlide`**      | `(index: number): void => {}`               | Remove the slide at index `index`                                             |
+| **`activateSlide`**    | `(index: number): void => {}`               | Navigate to (i.e. activate) the slide at index `index`                        |

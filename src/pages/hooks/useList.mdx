@@ -1,6 +1,6 @@
 # useList
 
-`useList` is a hook that provides a way to manage a [List](<https://en.wikipedia.org/wiki/List_(abstract_data_type)>) of items within your React components. See the [API Reference](#api-reference) for more details.
+`useList` is a hook that provides a way to manage a List of items within your React components. See the [API Reference](#api-reference) for more details. You can learn more about how lists work [on Wikipedia](<https://en.wikipedia.org/wiki/List_(abstract_data_type)>) or the [NIST](https://xlinux.nist.gov/dads/HTML/list.html).
 
 ## Usage
 
@@ -15,11 +15,11 @@ import { useList } from '@ridgehkr/useful'
 ### Example: Managing a List of Strings
 
 ```tsx /useList/ filename="MyListComponent.tsx"
-import { useList } from '@ridgehkr/useful'
+import { useList, List } from '@ridgehkr/useful'
 
 export default function MyListComponent() {
   // Initialize the list with some items
-  const { items, head, size, prepend, remove, append } = useList<string>([
+  const { items, head, size, prepend, remove, append }: List = useList<string>([
     'Item 1',
     'Item 2',
     'Item 3',
@@ -60,6 +60,12 @@ export default function MyListComponent() {
 ```
 
 ## API Reference
+
+### Hook Signature
+
+```tsx
+useList<T>(initialItems?: T[]): List<T>
+```
 
 ### Parameters
 
