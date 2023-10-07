@@ -22,17 +22,16 @@ This is a simple example of how to store a user's name in local storage. The nam
 import { useState } from 'react'
 import { useLocalStorage } from '@ridgehkr/useful'
 
-function UserGreeting() {
+export default function UserGreeting() {
   const [name, setName] = useState('')
-  const { value, setStoredValue, deleteStoredValue } = useLocalStorage(
+  const { value, setStoredValue, deleteStoredValue } = useLocalStorage<string>(
     'user_name',
     ''
   )
 
-  const handleNameChange = (event) => {
-    const newName = event.target.value
-    setName(newName)
-    setStoredValue(newName)
+  const handleNameChange = (value: string) => {
+    setName(value)
+    setStoredValue(value)
   }
 
   return (
@@ -41,15 +40,13 @@ function UserGreeting() {
       <input
         type='text'
         value={name}
-        onChange={handleNameChange}
+        onChange={(e) => handleNameChange(e.target.value)}
         placeholder='Enter your name'
       />
       <button onClick={deleteStoredValue}>Clear Name</button>
     </div>
   )
 }
-
-export default UserGreeting
 ```
 
 ## API Reference

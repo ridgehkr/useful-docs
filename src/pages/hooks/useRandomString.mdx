@@ -14,17 +14,14 @@ import { useRandomString } from '@ridgehkr/useful'
 
 ## Example
 
-The `useRandomString` hook takes two parameters: the `value` that you want to throttle and an optional `interval` in milliseconds. It returns the throttled value, which is updated no more frequently than the specified `interval`.
+Here's an example of how you can use `useRandomString` to create a password generator component. In this example, `useRandomString` is used to generate a random string based on the current settings. The resulting string is updated automatically whenever the settings are changed.
 
-Here's an example of how you can use the `useRandomString` hook to create a password generator component:
-
-```tsx filename="PasswordGenerator.tsx"
-import './App.css'
+```tsx /useRandomString/ filename="PasswordGenerator.tsx"
 import { useRandomString } from '@ridgehkr/useful'
 
-function App() {
+export default function PasswordGenerator() {
   const {
-    password,
+    value,
     length,
     setLength,
     symbols,
@@ -33,13 +30,18 @@ function App() {
     includeNumbers,
     uppercase,
     includeUppercase,
-  } = useRandomString()
+  } = useRandomString({
+    length: 12,
+    symbols: true,
+    numbers: true,
+    uppercase: true,
+  })
 
   return (
     <div>
-      <h1>Random Password Generator</h1>
+      <h1>Password Generator</h1>
 
-      <h2>{password}</h2>
+      <h2>{value}</h2>
 
       <p>
         <label>
@@ -88,65 +90,39 @@ function App() {
     </div>
   )
 }
-
-export default PasswordGenerator
 ```
 
-In this example, the `useRandomString` hook is used to generate a random string based on the current settings. The resulting string is updated automatically whenever the settings are changed.
+## API Reference
 
-## Parameters
-
-`useRandomString()` accepts an object of arguments to initially define the properties of the generated string. All of these parameters can be changed later using the [functions returned](#return-value) by the hook.
-
-| Parameter       |  Type   | Required? | Description                                                           |
-| :-------------- | :-----: | --------: | --------------------------------------------------------------------- |
-| **`len`**       | number  |     false | The length of the password to generate                                |
-| **`symbols`**   | boolean |     false | Whether or not to include symbols in the generated password           |
-| **`numbers`**   | boolean |     false | Whether or not to include numbers in the generated password           |
-| **`uppercase`** | boolean |     false | Whether or not to include uppercase letters in the generated password |
-
-### Example
+### Hook Signature
 
 ```tsx
-// Initialize the hook with a password with a length of 24 and including symbols, numbers, and uppercase letters
-const { value } = useRandomString({
-  length: 24,
-  symbols: true,
-  numbers: true,
-  uppercase: true,
-})
+useRandomString(options: StringGeneratorOptions)
 ```
 
-## Return Value
+### Parameters
 
-The `useRandomString` hook returns an object with the following properties:
+`useRandomString` accepts a `StringGeneratorOptions` object of arguments to initially define the properties of the generated string. All of these parameters can be changed later using the [functions returned](#return-value) by the hook.
 
-| Property                                 |   Type   |                                             Description |
-| :--------------------------------------- | :------: | ------------------------------------------------------: |
-| **`value`**                              |  string  |    The generated password based on the current settings |
-| **`length`**                             |  number  |                    The length of the generated password |
-| **`setLength(length: number)`**          | function |                   A function to set the password length |
-| **`symbols`**                            | boolean  |                     Whether or not symbols are included |
-| **`includeSymbols(include: boolean)`**   | function |           A function to toggle the inclusion of symbols |
-| **`numbers`**                            | boolean  |                     Whether or not numbers are included |
-| **`includeNumbers(include: boolean)`**   | function |           A function to toggle the inclusion of numbers |
-| **`uppercase`**                          | boolean  |           Whether or not uppercase letters are included |
-| **`includeUppercase(include: boolean)`** | function | A function to toggle the inclusion of uppercase letters |
+| Parameter       |  Type   | Required? | Description                                                            |
+| :-------------- | :-----: | --------: | ---------------------------------------------------------------------- |
+| **`len`**       | number  |     false | The length of the string to generate                                   |
+| **`symbols`**   | boolean |     false | Whether or not to include symbols in the generated string              |
+| **`numbers`**   | boolean |     false | Whether or not to include numbers in the generated string              |
+| **`uppercase`** | boolean |     false | Whether or not to include uppercase characters in the generated string |
 
-### Return Function Examples
+### Return Value
 
-The returned functions provide a means to change the length and character types of the generated password. For example:
+`useRandomString` returns an object with the following properties:
 
-```tsx
-// Set the password length to 24
-setLength(24)
-
-// Include symbols in the generated password
-includeSymbols(true)
-
-// Include numbers in the generated password
-includeNumbers(true)
-
-// Include uppercase letters in the generated password
-includeUppercase(true)
-```
+| Property                                 | Type                             | Description                                             |
+| :--------------------------------------- | :------------------------------- | :------------------------------------------------------ |
+| **`value`**                              | `string`                         | The generated string based on the current settings      |
+| **`length`**                             | `number`                         | The length of the generated string                      |
+| **`setLength(length: number)`**          | `(length: boolean): void => {}`  | A function to set the string length                     |
+| **`symbols`**                            | `boolean`                        | Whether or not symbols are included                     |
+| **`includeSymbols(include: boolean)`**   | `(include: boolean): void => {}` | A function to toggle the inclusion of symbols           |
+| **`numbers`**                            | `boolean`                        | Whether or not numbers are included                     |
+| **`includeNumbers(include: boolean)`**   | `(include: boolean): void => {}` | A function to toggle the inclusion of numbers           |
+| **`uppercase`**                          | `boolean`                        | Whether or not uppercase letters are included           |
+| **`includeUppercase(include: boolean)`** | `(include: boolean): void => {}` | A function to toggle the inclusion of uppercase letters |

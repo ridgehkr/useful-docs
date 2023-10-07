@@ -1,20 +1,26 @@
 # useOnlineStatus
 
-This hook is designed to help you monitor the online status of a user within your web application. It provides a simple and convenient way to determine whether the user's device is currently connected to the internet.
+This hook helps you monitor the online status of a user within your application. It provides a simple way to determine whether the user's device is currently connected to the internet.
 
 ## Usage
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useOnlineStatus` hook in your component:
+2. Import `useOnlineStatus` into your component.
 
-Here's a simple example of how you can use the `useOnlineStatus` hook in a React component:
+```tsx
+import { useOnlineStatus } from '@ridgehkr/useful'
+```
 
-```jsx filename="OnlineStatus.jsx"
+## Example
+
+This basic example displays a message indicating online status. (Note: to simulate offline status, you can use the Network tab in your browser's DevTools to disable the network connection.)
+
+```jsx /useOnlineStatus/ filename="OnlineStatus.jsx"
 import React from 'react'
 import { useOnlineStatus } from '@ridgehkr/useful'
 
-function OnlineStatus() {
+export default function OnlineStatus() {
   const isOnline = useOnlineStatus()
 
   return (
@@ -27,23 +33,18 @@ function OnlineStatus() {
     </div>
   )
 }
-
-export default OnlineStatus
 ```
 
-In this example, the return from `useOnlineStatus` toggles a status message indicating whether the user is currently online or offline.
+## API Reference
 
-## How It Works
+### Parameters
 
-The hook tracks online status using the value of [`navigator.onLine`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/onLine), which is a property provided by the browser's Navigator object. It represents the user's online status when the page initially loads.
+`useOnlineStatus` does not accept any parameters.
 
-## Parameters
+### Return Value
 
-The `useOnlineStatus` hook does not accept any parameters.
+The hook returns a boolean indicating online status:
 
-## Return Value
-
-The hook returns a boolean indicating whether the user is currently online or offline.
-
-- **`true`** - The user is currently online.
-- **`false`** - The user is currently offline.
+| Property       | Type      | Description                          |
+| :------------- | :-------- | :----------------------------------- |
+| **`isOnline`** | `boolean` | `true` if online, `false` if offline |
