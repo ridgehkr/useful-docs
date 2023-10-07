@@ -8,7 +8,7 @@ This hooks manages the state of your application's dark mode. Dark mode will def
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useDarkMode` hook in your component.
+2. Import `useDarkMode` into your component.
 
 ```tsx
 import { useDarkMode } from '@ridgehkr/useful'
@@ -16,11 +16,10 @@ import { useDarkMode } from '@ridgehkr/useful'
 
 ## Basic Example
 
-```tsx filename="App.jsx"
-import React from 'react'
-import useDarkMode from 'use-dark-mode-hook'
+```tsx /useDarkMode/ filename="App.jsx"
+import { useDarkMode } from '@ridgehkr/useful'
 
-function App() {
+export default function DarkModeManager() {
   const { isDarkMode, setIsDarkMode } = useDarkMode()
 
   return (
@@ -32,8 +31,6 @@ function App() {
     </div>
   )
 }
-
-export default App
 ```
 
 ## API

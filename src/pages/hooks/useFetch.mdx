@@ -2,17 +2,19 @@ import Install from '../_partials/install.mdx'
 
 # useFetch
 
-This hook allows you to easily fetch data from a given URL. It manages the fetching process, loading states, and potential errors, providing a simple way to integrate data fetching into your React components.
+This hook allows you to easily fetch data from a given URL. It's a simple wrapper around the [global fetch() function](https://developer.mozilla.org/en-US/docs/Web/API/fetch) and manages the fetching process, loading states, and potential errors.
 
 ## Usage
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useFetch` hook in your component.
+2. Import `useFetch` into your component.
+
+```tsx
+import { useFetch } from '@ridgehkr/useful'
+```
 
 ## Example
-
-The hook [returns](#api) an object containing various properties and methods to facilitate data fetching. Here's how you can use it in your component:
 
 ```tsx /useFetch/ filename="FetchPeople.tsx"
 import { useEffect } from 'react'

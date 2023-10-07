@@ -8,7 +8,7 @@ The `useLocalStorage` hook provides a convenient way to manage data persistence 
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useLocalStorage` hook in your component.
+2. Import `useLocalStorage` into your component.
 
 ```tsx
 import { useLocalStorage } from '@ridgehkr/useful'
@@ -16,9 +16,9 @@ import { useLocalStorage } from '@ridgehkr/useful'
 
 ## Example
 
-This is a simple example of how you can use the `useLocalStorage` hook to store a user's name in local storage. The name is then retrieved from local storage and displayed in a greeting.
+This is a simple example of how to store a user's name in local storage. The name is then retrieved and displayed in a greeting. See the [API Reference](#api-reference) for more details on the return value of the hook.
 
-```tsx filename="UserGreeting.tsx"
+```tsx /useLocalStorage/ filename="UserGreeting.tsx"
 import { useState } from 'react'
 import { useLocalStorage } from '@ridgehkr/useful'
 
@@ -52,19 +52,27 @@ function UserGreeting() {
 export default UserGreeting
 ```
 
-## API
+## API Reference
+
+### Hook Signature
 
 **`useLocalStorage(key: string, initialValue: any)`**
 
+### Parameters
+
 The `useLocalStorage` hook takes two parameters: `key` and `initialValue`. The `key` is a unique identifier for the stored value in local storage, while `initialValue` is the default value to use if no stored value is found.
 
-#### Return Value
+| Property           | Type     | Required | Description                                      |
+| :----------------- | :------- | :------- | :----------------------------------------------- |
+| **`key`**          | `string` | yes      | The unique identifier of the local storage value |
+| **`initialValue`** | `T`      | no       | The initial value                                |
 
-An object with the following properties:
+### Return Value
 
-- `value`\
-  The current value stored in local storage for the provided key.
-- `setStoredValue(newValue: any)`\
-  A function to update the stored value for the provided key.\
-- `deleteStoredValue()`\
-  A function to delete the stored value for the provided key and reset it to the initial value.
+`useLocalStorage` returns an object with the following properties:
+
+| Property                | Type                    | Description                                                                    |
+| :---------------------- | :---------------------- | :----------------------------------------------------------------------------- |
+| **`value`**             | `T`                     | The current value stored in local storage for the provided key                 |
+| **`setStoredValue`**    | `(newValue: T) => void` | Update the stored value for the provided key                                   |
+| **`deleteStoredValue`** | `() => void`            | Delete the stored value for the provided key and reset it to the initial value |

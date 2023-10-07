@@ -1,46 +1,40 @@
 # useList
 
-The `useList` hook is a custom React hook that provides a way to manage a list (array) of items within your React components. It offers functions for adding, removing, and updating items in the list. This hook is designed to simplify the management of list-based data in your React applications.
+`useList` is a hook that provides a way to manage a [List](<https://en.wikipedia.org/wiki/List_(abstract_data_type)>) of items within your React components. See the [API Reference](#api-reference) for more details.
 
 ## Usage
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useElementSize` hook in your component:
+2. Import `useList` into your component.
 
 ```tsx
 import { useList } from '@ridgehkr/useful'
 ```
 
-### Basic Usage
+### Example: Managing a List of Strings
 
-The useList hook returns an object with the following properties and methods:
-
-- **`items`**: An array representing the current list of items.
-- **`add(item: T)`**: A function to add an item to the list.
-- **`remove(index: number)`**: A function to remove an item from the list by index.
-- **`update(index: number, newItem: T)`**: A function to update an item in the list by index.
-
-Here's an example of how to use the useList hook within a React component:
-
-```tsx
-import React from 'react'
+```tsx /useList/ filename="MyListComponent.tsx"
 import { useList } from '@ridgehkr/useful'
 
-function MyListComponent() {
+export default function MyListComponent() {
   // Initialize the list with some items
-  const { items, add, remove, update } = useList<string>(['Item 1', 'Item 2'])
+  const { items, head, size, prepend, remove, append } = useList<string>([
+    'Item 1',
+    'Item 2',
+    'Item 3',
+  ])
 
-  const addItem = () => {
-    add('New Item')
+  const addItem = (item: string) => {
+    prepend(item)
   }
 
   const removeItem = (index: number) => {
     remove(index)
   }
 
-  const updateItem = (index: number, newItem: string) => {
-    update(index, newItem)
+  const addToEnd = (item: string) => {
+    append(item)
   }
 
   return (
@@ -49,53 +43,42 @@ function MyListComponent() {
         {items.map((item, index) => (
           <li key={index}>
             {item}
-            <button onClick={() => removeItem(index)}>Remove</button>
-            <button
-              onClick={() => updateItem(index, `Updated Item ${index + 1}`)}
-            >
-              Update
-            </button>
+            <button onClick={() => removeItem(index)}>Remove Item</button>
           </li>
         ))}
       </ul>
-      <button onClick={addItem}>Add Item</button>
+      <button onClick={() => addItem('New First Item')}>Prepend Item</button>
+      <button onClick={() => addToEnd('New Item at the End')}>
+        Append Item
+      </button>
+
+      <p>List size: {size()}</p>
+      <p>First item (head): {head}</p>
     </div>
   )
 }
-
-export default MyListComponent
 ```
 
 ## API Reference
 
 ### Parameters
 
-| Property           | Required? | Type  |                                     Description |
-| :----------------- | :-------: | :---: | ----------------------------------------------: |
-| **`initialItems`** |   false   | `t[]` | Items with which to initially populate the List |
+| Property           | Required | Type  | Description                                     |
+| :----------------- | :------- | :---- | :---------------------------------------------- |
+| **`initialItems`** | no       | `t[]` | Items with which to initially populate the List |
 
 ### Return Value
 
-The `useList` hook returns all items in the List along with several functions for interacting with the List.
+The `useList` hook returns several properties of the List along with several functions for interacting with it.
 
-| Property     | Type                                      | Description                                                                    |
-| :----------- | :---------------------------------------- | :----------------------------------------------------------------------------- |
-| **`items`**  | `T[]`                                     | An array representing the current list of items.                               |
-| **`add`**    | `(item: T): void`                         | A function to add a new item of type `T` to the List.                          |
-| **`remove`** | `(index: number): void`                   | Removes an item from the list at index `index`.                                |
-| **`update`** | `update(index: number, newItem: T): void` | A function to update an item in the list with item `newItem` at index `index`. |
-
-## Example
-
-Here's a simple example of how to use the `useList` hook in a React component:
-
-```tsx
-import React from 'react'
-import { useList } from '@ridgehkr/useful'
-
-function MyListComponent() {
-  const { items, add, remove, update } = useList<string>(['Item 1', 'Item 2'])
-
-  // Your component code here...
-}
-```
+| Property      | Type                                  | Description                                                       |
+| :------------ | :------------------------------------ | :---------------------------------------------------------------- |
+| **`items`**   | `T[]`                                 | An array representing the current list of items                   |
+| **`head`**    | `T \| undefined`                      | The item at the head (index 0) of the List                        |
+| **`tail`**    | `T[]`                                 | The tail of the List. (All items except for the `head`)           |
+| **`size`**    | `number`                              | The number of items currently in the list                         |
+| **`itemAt`**  | `(index: number) => T \| undefined`   | Get the value of the List at index `index`                        |
+| **`prepend`** | `(item: T) => void`                   | Prepend (i.e. add at the beginning) an item to the List           |
+| **`append`**  | `(item: T) => void`                   | Append (i.e. add at the end) an item to the List                  |
+| **`remove`**  | `(index: number) => void`             | Remove the item at index `index` from the List.                   |
+| **`update`**  | `(index: number, newItem: T) => void` | Replace an item in the List with item `newItem` at index `index`. |

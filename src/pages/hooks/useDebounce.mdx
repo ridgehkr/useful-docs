@@ -6,7 +6,7 @@ This hook is designed to debounce updates to a given value. Debouncing is a tech
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useDebounce` hook in your component:
+2. Import `useDebounce` into your component.
 
 ```tsx
 import { useDebounce } from '@ridgehkr/useful'
@@ -14,12 +14,7 @@ import { useDebounce } from '@ridgehkr/useful'
 
 ### Example
 
-`useDebounce` can be utilized by calling it within a functional component. It takes two parameters. [See the API Reference](#api-reference) for more details on these return values:
-
-- **`value: T`** is the value that you want to debounce.
-- **`delay: number`** is the delay in milliseconds before the value update is propagated.
-
-The hook returns the debounced version of the value:
+The hook returns the debounced version of the value argument:
 
 ```tsx
 const debouncedValue = useDebounce(value, delay)
@@ -27,11 +22,11 @@ const debouncedValue = useDebounce(value, delay)
 
 #### In your React component:
 
-```tsx /useDebounce/ filename="DebounceExample.jsx"
-import React, { useState } from 'react'
+```tsx /useDebounce/ filename="DebouncedInput.jsx"
+import { useState } from 'react'
 import { useDebounce } from '@ridgehkr/useful'
 
-function DebounceExample() {
+export default function DebouncedInput() {
   const [inputValue, setInputValue] = useState('')
   const debouncedInputValue = useDebounce(inputValue, 500)
 
