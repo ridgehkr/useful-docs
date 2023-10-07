@@ -1,36 +1,36 @@
 # useThrottle
 
-The `useThrottle` hook is a custom React hook that allows you to limit the frequency of a value changing to once every specified interval (defaults to 400ms). This can be especially useful when dealing with fast-changing values, such as those updated in response to user input or external events. The hook helps prevent excessive re-renders and improves performance by ensuring that the value updates are throttled to a specified interval.
+The `useThrottle` hook allows you to limit the frequency of a value's change to once every specified interval (defaults to 400ms). This can be especially useful when dealing with fast-changing values, such as those updated in response to user input or external events. The hook helps prevent excessive re-renders and improves performance by ensuring that the value updates are throttled to a specified interval.
 
 ## Installation
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useThrottle` hook in your component.
+2. Import `useThrottle` into your component.
 
-## Usage
+```tsx
+import { useThrottle } from '@ridgehkr/useful'
+```
 
-The `useThrottle` hook takes two parameters: the `value` that you want to throttle and an optional `interval` in milliseconds. It returns the throttled value, which is updated no more frequently than the specified `interval`.
+## Example
 
 This is a basic example where `useThrottle` is used to limit the update frequency of a search input's value:
 
-```tsx filename="SearchForm.tsx"
-import React, { useState } from 'react'
+```tsx /useThrottle/ filename="SearchForm.tsx"
+import { ChangeEvent, useState } from 'react'
 import { useThrottle } from '@ridgehkr/useful'
 
-export const SearchInput = () => {
+export default function SearchInput() {
   const [inputValue, setInputValue] = useState<string>('')
   const throttledValue = useThrottle<string>(inputValue, 600)
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
   }
 
   return (
-    <div className={style.demo}>
-      <header className={style.header}>
-        <h1>useThrottle</h1>
-      </header>
+    <div>
+      <h1>useThrottle</h1>
 
       <p>
         <input onChange={handleInputChange} />
@@ -49,13 +49,13 @@ The `inputValue` state value is updated whenever the user types in the input fie
 
 ### Parameters
 
-| Property       | Type   | Description                                                         |
-| :------------- | :----- | :------------------------------------------------------------------ |
-| **`value`**    | any    | The value you want to throttle                                      |
-| **`interval`** | number | The interval in milliseconds between updates of the throttled value |
+| Property       | Type     | Description                                                                             |
+| :------------- | :------- | :-------------------------------------------------------------------------------------- |
+| **`value`**    | `T`      | The value you want to throttle                                                          |
+| **`interval`** | `number` | The interval in milliseconds between updates of the throttled value. Defaults to 400ms. |
 
 ### Return Value
 
 | Property             | Type | Description                                                                 |
 | :------------------- | :--- | :-------------------------------------------------------------------------- |
-| **`throttledValue`** | any  | The throttled value, which is updated no more frequently than the interval. |
+| **`throttledValue`** | `T`  | The throttled value, which is updated no more frequently than the interval. |

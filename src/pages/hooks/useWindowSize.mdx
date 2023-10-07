@@ -6,7 +6,11 @@ This hook allows you to track the current width and height of the browser window
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import and use the `useWindowSize` hook in your component.
+2. Import `useWindowSize` into your component.
+
+```tsx
+import { useWindowSize } from '@ridgehkr/useful'
+```
 
 ## Usage
 
@@ -15,7 +19,7 @@ The `useWindowSize` hook doesn't take any parameters. It returns an object with 
 ```tsx /useWindowSize/ filename="WindowSize.tsx"
 import { useWindowSize } from '@ridgehkr/useful'
 
-export const WindowSize = () => {
+export default function WindowSize() {
   const { width, height } = useWindowSize()
 
   return (
@@ -36,7 +40,7 @@ export const WindowSize = () => {
 
 ### Parameters
 
-`useElementSize` does not accept any parameters.
+`useWindowSize` does not accept any parameters.
 
 ### Return Value
 
