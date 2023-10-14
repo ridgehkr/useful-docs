@@ -85,7 +85,7 @@ export default function StackExample() {
       <div>
         <p>Stack: {stack.toArray().join(', ')}</p>
         <p>{result}</p>
-        <p>Stack Size: {stack.size()}</p>
+        <p>Stack Size: {stack.size}</p>
       </div>
     </div>
   )
@@ -115,10 +115,10 @@ useStack<T>(initialItems?: T[]): Stack<T>
 | Property       | Type                       | Returns                                              | Description                                                  |
 | :------------- | :------------------------- | :--------------------------------------------------- | :----------------------------------------------------------- |
 | **`items`**    | `() => {}`                 | An array containing the items in the stack           | Returns the items in the stack                               |
+| **`size`**     | `number`                   | The number of items in the stack                     | Returns the number of items in the stack                     |
 | **`push`**     | `(item: T): void => {}`    | `void`                                               | Pushes an item onto the top of the stack                     |
 | **`pop`**      | `(): T \| undefined => {}` | The popped item or `undefined` if the stack is empty | Removes and returns the top item from the stack              |
 | **`peek`**     | `(): T => {}`              | The top item or `undefined` if the stack is empty    | Returns the top item from the stack (but does not remove it) |
-| **`size`**     | `number`                   | The number of items in the stack                     | Returns the number of items in the stack                     |
 | **`clear`**    | `(): void => {}`           | `void`                                               | Removes all items from the stack                             |
 | **`contains`** | `(item: T): boolean => {}` | `boolean`                                            | Whether or not the Stack contains item `T`                   |
 | **`toArray`**  | `(): T[] => {}`            | `T[]`                                                | Returns an array representation of the Stack                 |
