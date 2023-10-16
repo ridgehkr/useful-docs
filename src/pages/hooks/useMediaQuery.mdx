@@ -2,4 +2,57 @@ import { Callout } from 'nextra/components'
 
 # useMediaQuery
 
-<Callout emoji='⚠️'>This page is a stub. Help us by contributing!</Callout>
+This hook allows you to track the matching state of a media query string. When the string's [MediaQueryList](https://developer.mozilla.org/en-US/docs/Web/API/MediaQueryList) object changes, the hook will return a boolean value indicating whether the media query is currently matching or not.
+
+## Installation
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useMediaQuery` into your component.
+
+```tsx
+import { useMediaQuery } from '@ridgehkr/useful'
+```
+
+## Usage
+
+`useMediaQuery` returns a boolean with the current matched/unmatched status of the media query. The following is a basic example that determines if the window size is at least 800px wide:
+
+```tsx /useMediaQuery/ filename="MediaQuery.tsx"
+import { useMediaQuery } from '@ridgehkr/useful'
+
+export default function MediaQuery() {
+  // Is the viewport at least 800px wide?
+  const matches = useMediaQuery('(min-width: 800px)')
+
+  return (
+    <div>
+      <div>
+        <p>
+          Is the viewport at least 800px wide?{' '}
+          <strong>{matches ? 'Yes' : 'No'}</strong>
+        </p>
+        <p>Resize the window to see the media query match state change.</p>
+      </div>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Parameters
+
+`useMediaQuery` accepts a string containing a valid media query. For more information on media queries, see the [MDN documentation](https://developer.mozilla.org/en-US/docs/Web/CSS/Media_Queries/Using_media_queries).
+
+| Property    | Type     | Description                       |
+| :---------- | :------- | :-------------------------------- |
+| **`query`** | `string` | The media query string to monitor |
+
+### Return Value
+
+The hook returns a boolean indicating the matched state of the media query.
+
+| Property      | Type      | Description                                       |
+| :------------ | :-------- | :------------------------------------------------ |
+| **`matches`** | `boolean` | Whether or not the query string currently matches |
