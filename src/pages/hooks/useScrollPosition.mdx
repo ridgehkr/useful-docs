@@ -18,7 +18,7 @@ import { useScrollPosition } from '@ridgehkr/useful'
 
 The `useWindowSize` hook doesn't take any parameters. It returns an object with the current width and height in pixels of the browser window. The following is a basic example that displays the current window size:
 
-```tsx /useScrollPosition/ filename="WindowSize.tsx"
+```tsx /useScrollPosition/ filename="ScrollPosition.tsx"
 import { useScrollPosition } from '@ridgehkr/useful'
 
 export default function ScrollPosition() {
@@ -60,7 +60,7 @@ export default function ScrollPosition() {
 
 The hook returns an object with the following properties:
 
-| Property | Type   | Description                                                               |
-| :------- | :----- | :------------------------------------------------------------------------ |
-| **`x`**  | number | The number of pixels that the document is currently scrolled horizontally |
-| **`y`**  | number | The number of pixels that the document is currently scrolled vertically   |
+| Property | Type     | Description                                                               |
+| :------- | :------- | :------------------------------------------------------------------------ |
+| **`x`**  | `number` | The number of pixels that the document is currently scrolled horizontally |
+| **`y`**  | `number` | The number of pixels that the document is currently scrolled vertically   |
