@@ -2,4 +2,65 @@ import { Callout } from 'nextra/components'
 
 # useScrollPosition
 
-<Callout emoji='⚠️'>This page is a stub. Help us by contributing!</Callout>
+This hook allows you to track the current document scroll position by monitoring `window.scrollX` and `window.scrollY`. When the user scrolls, the hook will automatically update the [returned `x` and `y` values](#return-value).
+
+## Installation
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useScrollPosition` into your component.
+
+```tsx
+import { useScrollPosition } from '@ridgehkr/useful'
+```
+
+## Usage
+
+The `useWindowSize` hook doesn't take any parameters. It returns an object with the current width and height in pixels of the browser window. The following is a basic example that displays the current window size:
+
+```tsx /useScrollPosition/ filename="WindowSize.tsx"
+import { useScrollPosition } from '@ridgehkr/useful'
+
+export default function ScrollPosition() {
+  const { x, y } = useScrollPosition()
+
+  return (
+    <div
+      style={{
+        minHeight: '150vh',
+        textAlign: 'center',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        minWidth: '150vw',
+        backgroundColor: '#dedede',
+      }}
+    >
+      <div>
+        <p>
+          Scroll X: <strong>{x}</strong>
+        </p>
+        <p>
+          Scroll Y: <strong>{y}</strong>
+        </p>
+        <p>Scroll the window to see the X and Y values change.</p>
+      </div>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Parameters
+
+`useScrollPosition` does not accept any parameters.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+| Property | Type   | Description                                                               |
+| :------- | :----- | :------------------------------------------------------------------------ |
+| **`x`**  | number | The number of pixels that the document is currently scrolled horizontally |
+| **`y`**  | number | The number of pixels that the document is currently scrolled vertically   |
