@@ -14,7 +14,11 @@ import { useUndoRedo } from '@ridgehkr/useful'
 
 ## Example
 
-This is a basic example where `useUndoRedo` is used to limit the update frequency of a search input's value:
+This is a basic example where `useUndoRedo` is used to manage a stack of user actions. The actions are represented by a static string, but in practice could be anything other than `null` or `undefined`.
+
+- `takeAction()` is used to push a new action onto the `actions` stack.
+- `undo()` and `redo()` are used to pop and push actions onto the `actions` stack, respectively
+- `clearActions()` is used to delete all actions from the `actions` stack as well as any preserved actions resulting from `undo()`
 
 ```tsx /useUndoRedo/ filename="UserActions.tsx"
 import { useUndoRedo } from '@ridgehkr/useful'
@@ -33,13 +37,15 @@ export default function SearchInput() {
 }
 ```
 
-The `inputValue` state value is updated whenever the user types in the input field. However, the actual rendering of the throttled value (`throttledValue`) will only occur at most once every 600 milliseconds. This prevents excessive re-renders when the user is rapidly typing.
-
 ## API Reference
+
+### Hook Signature
+
+**`useUndoRedo<T>()`**
 
 ### Parameters
 
-This hook does not accept any parameters.
+This hook does not accept any parameters. Its type parameter `T` represents the type of the actions that will be managed by the hook.
 
 ### Return Value
 
