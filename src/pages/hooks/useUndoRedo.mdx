@@ -1,0 +1,52 @@
+# useUndoRedo
+
+The `useUndoRedo` hook manages a stack of user actions to enable undo and redo functionality.
+
+## Installation
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useUndoRedo` into your component.
+
+```tsx
+import { useUndoRedo } from '@ridgehkr/useful'
+```
+
+## Example
+
+This is a basic example where `useUndoRedo` is used to limit the update frequency of a search input's value:
+
+```tsx /useUndoRedo/ filename="UserActions.tsx"
+import { useUndoRedo } from '@ridgehkr/useful'
+
+export default function SearchInput() {
+  const { actions, redo, undo, takeAction, clearActions } = useUndoRedo()
+
+  return (
+    <div>
+      <button onClick={undo}>Undo</button>
+      <button onClick={redo}>Redo</button>
+      <button onClick={() => takeAction('New Action')}>Take Action</button>
+      <button onClick={clearActions}>Clear Actions</button>
+    </div>
+  )
+}
+```
+
+The `inputValue` state value is updated whenever the user types in the input field. However, the actual rendering of the throttled value (`throttledValue`) will only occur at most once every 600 milliseconds. This prevents excessive re-renders when the user is rapidly typing.
+
+## API Reference
+
+### Parameters
+
+This hook does not accept any parameters.
+
+### Return Value
+
+| Property           | Type                  | Description                                                                                           |
+| :----------------- | :-------------------- | :---------------------------------------------------------------------------------------------------- |
+| **`actions`**      | `T[]`                 | An array of actions of type T, representing a stack of all actions that can be undone/redone.         |
+| **`redo`**         | `() => void`          | Push the most recently undone action back onto the `actions` stack.                                   |
+| **`undo`**         | `() => void`          | Pop the most recent action from the `actions` stack.                                                  |
+| **`takeAction`**   | `(action: T) => void` | Push a new action onto the `actions` stack.                                                           |
+| **`clearActions`** | `() => void`          | Delete all actions from the `actions` stack as well as any preserved actions resulting from `undo()`. |

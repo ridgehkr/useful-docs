@@ -12,8 +12,8 @@ export default {
       >
         <defs>
           <linearGradient x1='0%' y1='0%' x2='100%' y2='100%' id='a'>
-            <stop stop-color='#794389' offset='0%' />
-            <stop stop-color='#DA5757' offset='100%' />
+            <stop stopColor='#794389' offset='0%' />
+            <stop stopColor='#DA5757' offset='100%' />
           </linearGradient>
         </defs>
         <path

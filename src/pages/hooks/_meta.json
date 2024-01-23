@@ -20,5 +20,6 @@
   "useStack": "useStack",
   "useTabs": "useTabs",
   "useThrottle": "useThrottle",
+  "useUndoRedo": "useUndoRedo",
   "useWindowSize": "useWindowSize"
 }
