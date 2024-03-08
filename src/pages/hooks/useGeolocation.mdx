@@ -1,5 +1,68 @@
-import { Callout } from 'nextra/components'
-
 # useGeolocation
 
-<Callout emoji='⚠️'>This page is a stub. Help us by contributing!</Callout>
+The `useGeolocation` hook allows you to easily track the user's current location using the browser's geolocation API. It returns an object containing the current latitude, longitude, and an optional error message if any issues arise during the geolocation retrieval process.
+
+## Installation
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useGeolocation` into your component.
+
+```tsx
+import { useGeolocation } from '@ridgehkr/useful'
+```
+
+## Example
+
+The following is a basic example where `useGeolocation` is used to query the browser's location API and display the user's latitude and longitude. The `getLocation` function is used to trigger the location retrieval process, and the `location` object contains the current latitude, longitude, and any error messages.
+
+```tsx /useGeolocation/ filename="LocationComponent.tsx"
+import { useGeolocation } from '@ridgehkr/useful'
+
+function LocationComponent() {
+  const { location, getLocation } = useGeoLocation()
+
+  // Trigger getLocation to update the user's location
+  const handleButtonClick = () => {
+    getLocation()
+  }
+
+  return (
+    <div>
+      <p>Latitude: {location.latitude}</p>
+      <p>Longitude: {location.longitude}</p>
+      {location.error && <p>Error: {location.error}</p>}
+      <button onClick={handleButtonClick}>Get Location</button>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### `GeoLocation` type
+
+```ts
+/**
+ * @typedef {Object} GeoLocation
+ * @property {number} latitude - The latitude of the user's current location.
+ * @property {number} longitude - The longitude of the user's current location.
+ * @property {string} error - An error message if a problem was encountered.
+ */
+export type GeoLocation = {
+  latitude: number | null
+  longitude: number | null
+  error: string | null
+}
+```
+
+### Parameters
+
+`useGeolocation` does not accept any parameters.
+
+### Return Value
+
+| Property          | Type          | Description                                                                     |
+| :---------------- | :------------ | :------------------------------------------------------------------------------ |
+| **`location`**    | `GeoLocation` | The user's location details, or an error message if they could not be retrieved |
+| **`getLocation`** | `() => void`  | A function to trigger the location retrieval process                            |
