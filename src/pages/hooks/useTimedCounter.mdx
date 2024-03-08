@@ -1,0 +1,63 @@
+# useTimedCounter
+
+The `useTimedCounter` hook provides a simple way to create a timed counter that increments at regular intervals. This hook is particularly useful for scenarios where you need to display and manage a counter that can start, stop, and reset based on specified conditions.
+
+## Installation
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useTimedCounter` into your component.
+
+```tsx
+import { useTimedCounter } from '@ridgehkr/useful'
+```
+
+## Example
+
+This is a basic example where `useTimedCounter` is used to manage the current index of the counter, incrementing automatically every 1000ms. The counter will loop back to its initial index of 1 when it reaches 10.
+
+```tsx /useTimedCounter/ filename="TestTimer.tsx"
+import { useTimedCounter } from '@ridgehkr/useful'
+
+export default function TestTimer() {
+  const { index, pause, play, reset, goToIndex, running } = useTimedCounter(
+    1,
+    10,
+    1000,
+    true
+  )
+
+  return (
+    <div>
+      <p>Current Index: {index}</p>
+      <button onClick={running ? pause : play}>
+        {running ? 'Pause' : 'Play'}
+      </button>
+      <button onClick={reset}>Reset</button>
+      <button onClick={() => goToIndex(5)}>Go to Index 5</button>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Parameters
+
+| Property           | Type      | Default      | Description                                                                                         |
+| :----------------- | :-------- | :----------- | :-------------------------------------------------------------------------------------------------- |
+| **`initialValue`** | `number`  | _(required)_ | The initial value of the counter                                                                    |
+| **`maxValue`**     | `number`  | _(required)_ | The maximum value of the counter.                                                                   |
+| **`interval`**     | `number`  | _(required)_ | The counter increment interval in milliseconds.                                                     |
+| **`loop`**         | `boolean` | `false`      | Indicates whether the counter should loop back to `initialValue` when the maximum value is reached. |
+
+### Return Value
+
+| Property        | Type                      | Description                                        |
+| :-------------- | :------------------------ | :------------------------------------------------- |
+| **`index`**     | `number`                  | The current index of the counter                   |
+| **`pause`**     | `() => void`              | A function to pause the counter                    |
+| **`play`**      | `() => void`              | A function to play the counter                     |
+| **`reset`**     | `() => void`              | A function to reset the counter to `initialValue`  |
+| **`goToIndex`** | `(index: number) => void` | A function to set the counter to a specific index  |
+| **`running`**   | `boolean`                 | Indicates whether the counter is currently running |
