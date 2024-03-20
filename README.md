@@ -8,8 +8,6 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
 ```
 
 You can edit all page content within `src/pages/`. The development site will auto-updates when you save changes.
