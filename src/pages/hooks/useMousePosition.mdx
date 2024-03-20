@@ -2,4 +2,48 @@ import { Callout } from 'nextra/components'
 
 # useMousePosition
 
-<Callout emoji='⚠️'>This page is a stub. Help us by contributing!</Callout>
+This hook tracks the current position of the mouse within the browser window. It provides a simple interface for accessing the x and y coordinates of the mouse cursor in pixels.
+
+## Installation
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useWindowSize` into your component.
+
+```tsx
+import { useMousePosition } from '@ridgehkr/useful'
+```
+
+## Usage
+
+The `useMousePosition` hook doesn't take any parameters. It returns an object with the current width and height in pixels of the browser window. The following is a basic example that displays the current window size:
+
+```tsx /useMousePosition/ filename="MouseTracker.tsx"
+import { useMousePosition } from '@ridgehkr/useful'
+
+export default function MouseTracker() {
+  const { x, y } = useMousePosition()
+
+  return (
+    <div>
+      <p>X: {x}</p>
+      <p>Y: {y}</p>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Parameters
+
+`useMousePosition` does not accept any parameters.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+| Property | Type     | Description                                            |
+| :------- | :------- | :----------------------------------------------------- |
+| **`x`**  | `number` | The current x position (in pixels) of the mouse cursor |
+| **`y`**  | `number` | The current y position (in pixels) of the mouse cursor |

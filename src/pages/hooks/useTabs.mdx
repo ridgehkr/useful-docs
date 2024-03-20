@@ -2,4 +2,70 @@ import { Callout } from 'nextra/components'
 
 # useTabs
 
-<Callout emoji='⚠️'>This page is a stub. Help us by contributing!</Callout>
+This hook manages the state of a list of tabs, providing the necessary properties for tracking and rendering tabs. This hook facilitates adding, removing, and activating tabs within a tabbed interface.
+
+## Installation
+
+To use this custom hook in your React project, you can follow these steps:
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useTabs` into your component.
+
+```tsx
+import { useTabs } from '@ridgehkr/useful'
+```
+
+## Example
+
+This example demonstrates adding, removing, and switching between tabs:
+
+```tsx /useTabs/ filename="MyTabs.tsx"
+import { useTabs } from '@ridgehkr/useful'
+
+export default function MyTabs() {
+  const { tabs, activeTab, addTab, removeTab, activateTab } = useTabs()
+
+  const handleAddTab = () => {
+    addTab(`Tab ${tabs.length + 1}`)
+  }
+
+  const handleRemoveTab = (index) => {
+    removeTab(index)
+  }
+
+  const handleActivateTab = (index) => {
+    activateTab(index)
+  }
+
+  return (
+    <div>
+      <ul>
+        {tabs.map((tab, index) => (
+          <li key={index}>
+            <button onClick={() => handleActivateTab(index)}>{tab}</button>
+            <button onClick={() => handleRemoveTab(index)}>Remove</button>
+          </li>
+        ))}
+      </ul>
+      <button onClick={handleAddTab}>Add Tab</button>
+      <p>Active Tab: {tabs[activeTab]}</p>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Parameters
+
+`useTabs` does not accept any parameters.
+
+### Return Value
+
+| Property          | Type                                      | Description                                                                                                 |
+| :---------------- | :---------------------------------------- | :---------------------------------------------------------------------------------------------------------- |
+| **`activeTab`**   | `number`                                  | The index of the currently active tab                                                                       |
+| **`addTab`**      | `(tab: string, index?: number) => number` | A function to add a new tab to the list. Optionally, specify the index where the new tab should be inserted |
+| **`removeTab`**   | `(index: number) => void`                 | A function to remove a tab from the list by its index                                                       |
+| **`activateTab`** | `(index: number) => void`                 | A function to set the active tab by its index                                                               |
