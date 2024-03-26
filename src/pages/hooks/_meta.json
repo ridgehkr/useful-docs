@@ -1,8 +1,10 @@
 {
   "useAsync": "useAsync",
+  "useBatteryStatus": "useBatteryStatus",
   "useCSSCustomProp": "useCSSCustomProp",
   "useDarkMode": "useDarkMode",
   "useDebounce": "useDebounce",
+  "useDeviceOrientation": "useDeviceOrientation",
   "useElementSize": "useElementSize",
   "useFetch": "useFetch",
   "useGeolocation": "useGeolocation",
