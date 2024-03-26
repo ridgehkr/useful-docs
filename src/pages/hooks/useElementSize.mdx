@@ -21,7 +21,7 @@ Here's an example of how you can use `useElementSize` in your React component:
 ```tsx /useElementSize/ filename="ResizingBox.tsx"
 import { useElementSize } from '@ridgehkr/useful'
 
-function ResizingBox() {
+export default function ResizingBox() {
   const sizeRef = useRef<HTMLTextAreaElement>(null)
   const { width, height } = useElementSize(sizeRef)
   const [modSize, setModSize] = useState(200)

@@ -1,8 +1,56 @@
-import { Callout } from 'nextra/components'
-
 # useDeviceOrientation
 
-<Callout emoji='⚠️'>
-  This page is a stub. Help us by [contributing to the
-  documentation](https://github.com/ridgehkr/useful-docs).
-</Callout>
+The `useDeviceOrientation` hook monitors the orientation of the user's device around the X (beta), Y (gamma), and Z (alpha) axes and provides real-time values for this data.
+
+Note that device orientation data relies on the [DeviceOrientationEvent API](https://developer.mozilla.org/en-US/docs/Web/API/DeviceOrientationEvent), which is only available on mobile devices and via secured connections (HTTPS). If the API is not available, the hook will return `null` for all values.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useDeviceOrientation` into your component.
+
+```tsx
+import { useDeviceOrientation } from '@ridgehkr/useful'
+```
+
+## Example
+
+A simple usage example of how to capture and display device orientation data:
+
+```tsx /useDeviceOrientation/ filename="DeviceOrientation.tsx"
+import useDeviceOrientation, { DeviceOrientationData } from '@ridgehkr/useful'
+
+export default function DeviceOrientation() {
+  const { alpha, beta, gamma }: DeviceOrientationData = useDeviceOrientation()
+
+  return (
+    <div>
+      <h1>Device Orientation Data</h1>
+      <p>Alpha: {alpha}</p>
+      <p>Beta: {beta}</p>
+      <p>Gamma: {gamma}</p>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Hook Signature
+
+**`useDeviceOrientation(): { alpha: number | null, beta: number | null, gamma: number | null }`**
+
+### Parameters
+
+`useDeviceOrientation` does not accept any parameters.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+| Property    | Type             | Description                                                        |
+| :---------- | :--------------- | :----------------------------------------------------------------- |
+| **`alpha`** | `number \| null` | The rotation around the Z-axis in degrees (`null` if unavailable). |
+| **`beta`**  | `number \| null` | The rotation around the X-axis in degrees (`null` if unavailable)  |
+| **`gamma`** | `number \| null` | The rotation around the Y-axis in degrees (`null` if unavailable)  |

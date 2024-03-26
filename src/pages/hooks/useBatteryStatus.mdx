@@ -1,8 +1,49 @@
-import { Callout } from 'nextra/components'
-
 # useBatteryStatus
 
-<Callout emoji='⚠️'>
-  This page is a stub. Help us by [contributing to the
-  documentation](https://github.com/ridgehkr/useful-docs).
-</Callout>
+The `useBatteryStatus` hook provides real-time monitoring of the device's battery level and charging status. This hook utilizes the [Battery Status API](https://developer.mozilla.org/en-US/docs/Web/API/Battery_Status_API) when available in the browser to retrieve the necessary information.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useBatteryStatus` into your component.
+
+```tsx
+import { useBatteryStatus } from '@ridgehkr/useful'
+```
+
+## Example
+
+```tsx /useBatteryStatus/ filename="BatteryStatus.tsx"
+import useBatteryStatus, { BatteryStatus } from '@ridgehkr/useful'
+
+export default function BatteryStatusMonitor() {
+  const { level, charging }: BatteryStatus = useBatteryStatus()
+
+  return (
+    <div>
+      <p>Battery Level: {level}</p>
+      <p>Charging: {charging ? 'Yes' : 'No'}</p>
+    </div>
+  )
+}
+```
+
+## API
+
+### Hook Signature
+
+**`useBatteryStatus(): BatteryStatus`**
+
+### Parameters
+
+`useBatteryStatus` does not accept any parameters.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+| Property       | Type      | Description                                                         |
+| :------------- | :-------- | :------------------------------------------------------------------ |
+| **`level`**    | `number`  | The battery charge level ranging from 0 to 1                        |
+| **`charging`** | `boolean` | whether the device is currently charging (`true`) or not (`false`). |
