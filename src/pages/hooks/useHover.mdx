@@ -1,0 +1,44 @@
+# useHover
+
+`useHover` monitors the hover state of a specified HTML element. It allows developers to easily detect whether an element is currently being hovered over by the mouse cursor or (optionally) touched by a touchscreen device.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useHover` into your component.
+
+```tsx
+import { useHover } from '@ridgehkr/useful'
+```
+
+## Example
+
+```tsx /useHover/ filename="DetectHover.tsx"
+export default function DetectHover() {
+  const { ref, hasHover } = useHover() // useHover(true) to include touch events
+
+  return <div ref={ref}>{hasHover ? 'Hovered' : 'Not Hovered'}</div>
+}
+```
+
+## API
+
+### Hook Signature
+
+**`useBatteryStatus(): BatteryStatus`**
+
+### Parameters
+
+| Property           | Type      | Required                 | Description                                                          |
+| :----------------- | :-------- | :----------------------- | :------------------------------------------------------------------- |
+| **`includeTouch`** | `boolean` | No (defaults to `false`) | whether or not to include touch events in the hover state detection. |
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+| Property       | Type                           | Description                                                                             |
+| :------------- | :----------------------------- | :-------------------------------------------------------------------------------------- |
+| **`ref`**      | `React.RefObject<HTMLElement>` | A reference to the DOM element being monitored for hover state changes                  |
+| **`hasHover`** | `boolean`                      | Indicates whether the element is currently being hovered over (`true`) or not (`false`) |

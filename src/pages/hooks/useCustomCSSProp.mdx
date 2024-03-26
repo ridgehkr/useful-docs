@@ -1,4 +1,4 @@
-# useCSSCustomProp
+# useCustomCSSProp
 
 This hook allows you to monitor the current value of a CSS custom property. CSS custom properties, also known as CSS variables, provide a way to define reusable values in your CSS styles. This hook tracks the value of a given custom property in real-time, enabling you to reflect its current value within your React component.
 
@@ -6,15 +6,15 @@ This hook allows you to monitor the current value of a CSS custom property. CSS 
 
 1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
 
-2. Import `useCSSCustomProp` into your component.
+2. Import `useCustomCSSProp` into your component.
 
 ```tsx
-import { useCSSCustomProp } from '@ridgehkr/useful'
+import { useCustomCSSProp } from '@ridgehkr/useful'
 ```
 
 ### Example 1: Using a prop set at the document root
 
-`useCSSCustomProp` tracks the value of a CSS custom prop for you and returns a string reflecting its current value. By default, it will look for the custom property on the `documentElement` (i.e. the `<html>` element).
+`useCustomCSSProp` tracks the value of a CSS custom prop for you and returns a string reflecting its current value. By default, it will look for the custom property on the `documentElement` (i.e. the `<html>` element).
 
 #### In your CSS:
 
@@ -27,10 +27,10 @@ import { useCSSCustomProp } from '@ridgehkr/useful'
 #### In your React component:
 
 ```tsx /--theme-color/ filename="MyComponent.jsx"
-import { useCSSCustomProp } from '@ridgehkr/useful'
+import { useCustomCSSProp } from '@ridgehkr/useful'
 
 export function MyComponent() {
-  const themeColor = useCSSCustomProp('--theme-color')
+  const themeColor = useCustomCSSProp('--theme-color')
 
   // "Current theme color: #ffcc00"
   return <div>Current theme color: {themeColor}</div>
@@ -52,11 +52,11 @@ You can also specify a different root element to monitor for the custom property
 #### In your React component:
 
 ```tsx /--radius/ filename="Button.jsx"
-import { useCSSCustomProp } from '@ridgehkr/useful'
+import { useCustomCSSProp } from '@ridgehkr/useful'
 
 export function Button() {
   const buttonRef = useRef(null)
-  const buttonRadius = useCSSCustomProp('--radius', buttonRef)
+  const buttonRadius = useCustomCSSProp('--radius', buttonRef)
 
   return (
     <button
@@ -84,7 +84,7 @@ export function Button() {
 
 ### Return Value
 
-`useCSSCustomProp` returns the current value of the specified CSS custom property as a string. If the custom property does not exist or is not set, it returns an empty string.
+`useCustomCSSProp` returns the current value of the specified CSS custom property as a string. If the custom property does not exist or is not set, it returns an empty string.
 
 | Type     | Description                                |
 | :------- | :----------------------------------------- |
