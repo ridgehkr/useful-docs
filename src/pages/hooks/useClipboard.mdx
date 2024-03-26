@@ -1,0 +1,56 @@
+import { Callout } from 'nextra/components'
+
+# useClipboard
+
+The `useClipboard` hook manages the clipboard state and provides functions to interact with it.
+
+<Callout emoji='⚠️'>
+  This hook relies on the [Clipboard
+  API](https://developer.mozilla.org/en-US/docs/Web/API/Clipboard_API) which
+  currently has limited browser support. It also requires HTTPS to work in
+  modern browsers.
+</Callout>
+
+## Usage
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useClipboard` into your component.
+
+```tsx
+import { useClipboard } from '@ridgehkr/useful'
+```
+
+## Example
+
+```tsx /useClipboard/ filename="ClipboardExample.tsx"
+import useClipboard, { ClipboardStatus } from './useClipboard'
+
+export default function ClipboardExample() {
+  const { value, copy, clear }: ClipboardStatus = useClipboard()
+
+  return (
+    <div>
+      <p>Clipboard Value: {value}</p>
+      <button onClick={() => copy('Text to be copied')}>Copy Text</button>
+      <button onClick={clear}>Clear Clipboard</button>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Parameters
+
+`useClipboard` does not accept any parameters.
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+| Property    | Type                   | Description                                      |
+| :---------- | :--------------------- | :----------------------------------------------- |
+| **`value`** | `string \| null`       | The current value stored in the clipboard        |
+| **`copy`**  | `(text: string): void` | Copies the provided text to the clipboard        |
+| **`clear`** | `(): void`             | Clears the current value stored in the clipboard |

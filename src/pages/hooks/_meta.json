@@ -1,6 +1,7 @@
 {
   "useAsync": "useAsync",
   "useBatteryStatus": "useBatteryStatus",
+  "useClipboard": "useClipboard",
   "useCSSCustomProp": "useCSSCustomProp",
   "useDarkMode": "useDarkMode",
   "useDebounce": "useDebounce",
@@ -15,6 +16,7 @@
   "useMediaQuery": "useMediaQuery",
   "useMousePosition": "useMousePosition",
   "useOnlineStatus": "useOnlineStatus",
+  "usePagination": "usePagination",
   "useRandomString": "useRandomString",
   "useScrollPosition": "useScrollPosition",
   "useSessionStorage": "useSessionStorage",

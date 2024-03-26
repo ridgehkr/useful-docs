@@ -1,0 +1,94 @@
+# usePagination
+
+This hook provides functionality for managing the state of a pagination list. It enables tracking the current page, adjusting the number of items displayed per page, and ensuring that pagination remains within bounds based on the total number of items.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `usePagination` into your component.
+
+```tsx
+import { usePagination } from '@ridgehkr/useful'
+```
+
+## Example
+
+```tsx /usePagination/ filename="Pagination.tsx"
+import usePagination, {
+  PaginationOptions,
+  PaginationState,
+} from '@ridgehkr/useful'
+
+export default function Pagination() {
+  // total number of items to paginate
+  const totalItems = 100
+
+  // options for configuring pagination behavior
+  const paginationOptions: PaginationOptions = {
+    initialPage: 1,
+    initialItemsPerPage: 10,
+  }
+
+  // retrieve pagination state and functions
+  const {
+    currentPage,
+    itemsPerPage,
+    setPage,
+    setItemsPerPage,
+  }: PaginationState = usePagination(totalItems, paginationOptions)
+
+  return (
+    <div>
+      {/* Your paginated content */}
+
+      <p>Pagination Example</p>
+
+      <div>
+        <button onClick={() => setPage(currentPage - 1)}>Previous</button>
+        <span>
+          Page {currentPage} of {Math.ceil(totalItems / itemsPerPage)}
+        </span>
+        <button onClick={() => setPage(currentPage + 1)}>Next</button>
+        <select
+          value={itemsPerPage}
+          onChange={(e) => setItemsPerPage(Number(e.target.value))}
+        >
+          <option value={5}>5 per page</option>
+          <option value={10}>10 per page</option>
+          <option value={20}>20 per page</option>
+        </select>
+      </div>
+    </div>
+  )
+}
+```
+
+## API Reference
+
+### Parameters
+
+`usePagination` accepts two parameters:
+
+| Property         | Type                | Description                                                                           |
+| :--------------- | :------------------ | :------------------------------------------------------------------------------------ |
+| **`totalItems`** | `number`            | The total number of items to paginate                                                 |
+| **`options`**    | `PaginationOptions` | Configuration options (see [PaginationOptions](#paginationoptions) table for details) |
+
+#### `PaginationOptions`
+
+| Property                  | Type     | Description                                     |
+| :------------------------ | :------- | :---------------------------------------------- |
+| **`initialPage`**         | `number` | The initial pagination page                     |
+| **`initialItemsPerPage`** | `number` | The initial number of items to display per page |
+
+### Return Value
+
+The hook returns an object with the following properties:
+
+| Property              | Type                      | Description                                            |
+| :-------------------- | :------------------------ | :----------------------------------------------------- |
+| **`currentPage`**     | `number`                  | The current page of paginated items                    |
+| **`itemsPerPage`**    | `number`                  | The number of items to display per page                |
+| **`setPage`**         | `(page: number): void`    | Function to set the current page                       |
+| **`setItemsPerPage`** | `(perPage: number): void` | Function to set the number of items displayed per page |
