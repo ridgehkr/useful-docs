@@ -1,10 +1,10 @@
 # Useful: Documentation
 
-This is the documentation project for [Useful](https://usefulhooks.com/).
+This is the documentation project for [Useful](https://usefulhooks.com/) and is published to [docs.useful.com](https://docs.usefulhooks.com/).
 
 ## Development
 
-First, run the development server:
+First, run the live-reloading development server:
 
 ```bash
 npm run dev
