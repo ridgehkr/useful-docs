@@ -37,9 +37,9 @@ export default function DarkModeManager() {
 
 ### Hook Signature
 
-**`useDarkMode(initiallyDark?: boolean | null | undefined): DarkModeUsage`**
-
-The `useDarkMode` hook returns an object containing the current dark mode state and a function to toggle dark mode.
+```tsx
+useDarkMode(initiallyDark?: boolean): DarkModeUsage
+```
 
 #### Parameters
 
@@ -51,20 +51,9 @@ The `useDarkMode` hook returns an object containing the current dark mode state 
 
 #### Return Value
 
-The hook returns an object containing:
+The hook returns a `DarkModeUsage` object containing:
 
 | Property            | Type                          | Description                                  |
 | :------------------ | :---------------------------- | :------------------------------------------- |
 | **`isDarkMode`**    | `boolean`                     | Whether or not dark mode is currently active |
 | **`setIsDarkMode`** | `(darkMode: boolean) => void` | Manually set the dark mode state             |
-
-##### `setIsDarkMode` Example Usage
-
-`setIsDarkMode` is used to manually set the dark mode state. `true` activates it and `false` deactivates it.
-
-```tsx filename="setIsDarkMode()"
-// activate dark mode
-setIsDarkMode(true)
-
-console.log(isDarkMode) // "true"
-```

@@ -26,7 +26,9 @@ export default function DetectHover() {
 
 ### Hook Signature
 
-**`useBatteryStatus(): BatteryStatus`**
+```tsx
+useHover(includeTouch?: boolean): HoverState
+```
 
 ### Parameters
 
@@ -36,7 +38,7 @@ export default function DetectHover() {
 
 ### Return Value
 
-The hook returns an object with the following properties:
+The hook returns a `HoverState` object with the following properties:
 
 | Property       | Type                           | Description                                                                             |
 | :------------- | :----------------------------- | :-------------------------------------------------------------------------------------- |

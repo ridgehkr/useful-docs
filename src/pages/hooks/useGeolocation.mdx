@@ -40,20 +40,10 @@ export default function LocationComponent() {
 
 ## API Reference
 
-### `GeoLocation` type
+### Hook Signature
 
-```ts
-/**
- * @typedef {Object} GeoLocation
- * @property {number} latitude - The latitude of the user's current location.
- * @property {number} longitude - The longitude of the user's current location.
- * @property {string} error - An error message if a problem was encountered.
- */
-export type GeoLocation = {
-  latitude: number | null
-  longitude: number | null
-  error: string | null
-}
+```tsx
+useGeolocation(): GeoLocationState
 ```
 
 ### Parameters
@@ -62,7 +52,17 @@ export type GeoLocation = {
 
 ### Return Value
 
-| Property          | Type          | Description                                                                     |
-| :---------------- | :------------ | :------------------------------------------------------------------------------ |
-| **`location`**    | `GeoLocation` | The user's location details, or an error message if they could not be retrieved |
-| **`getLocation`** | `() => void`  | A function to trigger the location retrieval process                            |
+`useGeolocation` returns a `GeoLocationState` object with the following properties:
+
+| Property          | Type                               | Description                                                                     |
+| :---------------- | :--------------------------------- | :------------------------------------------------------------------------------ |
+| **`location`**    | [`GeoLocation`](#geolocation-type) | The user's location details, or an error message if they could not be retrieved |
+| **`getLocation`** | `() => void`                       | A function to trigger the location retrieval process                            |
+
+#### `GeoLocation` Type
+
+| Property        | Type     | Description                         |
+| :-------------- | :------- | :---------------------------------- |
+| **`latitude`**  | `number` | The user's current latitude         |
+| **`longitude`** | `number` | The user's current longitude        |
+| **`error`**     | `string` | An error message if retrieval fails |

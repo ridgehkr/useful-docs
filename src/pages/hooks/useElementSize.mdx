@@ -71,11 +71,13 @@ export default function ResizingBox() {
 
 ### Hook Signature
 
-**`useElementSize(ref: React.RefObject<HTMLElement>): { width: number, height: number }`**
+```tsx
+useElementSize(ref: React.RefObject<HTMLElement>): ElementSize
+```
 
 ### Parameters
 
-The useElementSize hook takes a single argument, a [React ref](https://react.dev/learn/referencing-values-with-refs) that points to the DOM element you want to monitor for size changes.
+The `useElementSize` hook takes a single argument, a [React ref](https://react.dev/learn/referencing-values-with-refs) that points to the DOM element you want to monitor for size changes.
 
 | Parameter | Type                           | Required? | Description                                  |
 | :-------- | :----------------------------- | :-------- | :------------------------------------------- |
@@ -83,7 +85,7 @@ The useElementSize hook takes a single argument, a [React ref](https://react.dev
 
 ### Return Value
 
-The hook returns an object with the following properties:
+The hook returns a `ElementSize` object with the following properties:
 
 | Property     | Type   | Description                                           |
 | :----------- | :----- | :---------------------------------------------------- |

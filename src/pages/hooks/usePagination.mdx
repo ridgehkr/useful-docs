@@ -66,6 +66,15 @@ export default function Pagination() {
 
 ## API Reference
 
+### Hook Signature
+
+```tsx
+usePagination(
+  totalItems: number,
+  options?: PaginationOptions
+): PaginationState
+```
+
 ### Parameters
 
 `usePagination` accepts two parameters:
@@ -84,7 +93,7 @@ export default function Pagination() {
 
 ### Return Value
 
-The hook returns an object with the following properties:
+The hook returns a `PaginationState` object with the following properties:
 
 | Property              | Type                      | Description                                            |
 | :-------------------- | :------------------------ | :----------------------------------------------------- |
@@ -92,3 +101,5 @@ The hook returns an object with the following properties:
 | **`itemsPerPage`**    | `number`                  | The number of items to display per page                |
 | **`setPage`**         | `(page: number): void`    | Function to set the current page                       |
 | **`setItemsPerPage`** | `(perPage: number): void` | Function to set the number of items displayed per page |
+
+import { SignatureKind } from 'typescript'

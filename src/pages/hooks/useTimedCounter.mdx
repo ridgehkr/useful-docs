@@ -42,6 +42,17 @@ export default function TestTimer() {
 
 ## API Reference
 
+### Hook Signature
+
+```tsx
+useTimedCounter(
+  initialValue: number,
+  maxValue: number,
+  interval: number,
+  loop: boolean
+): TimedCounterState
+```
+
 ### Parameters
 
 | Property           | Type      | Default      | Description                                                                                         |
@@ -52,6 +63,8 @@ export default function TestTimer() {
 | **`loop`**         | `boolean` | `false`      | Indicates whether the counter should loop back to `initialValue` when the maximum value is reached. |
 
 ### Return Value
+
+The `useTimedCounter` hook returns a `TimedCounterState` object with the following properties:
 
 | Property        | Type                      | Description                                        |
 | :-------------- | :------------------------ | :------------------------------------------------- |

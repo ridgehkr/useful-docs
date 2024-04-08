@@ -93,7 +93,9 @@ export default function LazyLoader() {
 
 ### Hook Signature
 
-**`useIntersectionObserver(options: IntersectionObserverOptions)`**
+```tsx
+useIntersectionObserver(options: IntersectionObserverOptions): IntersectionObserverState
+```
 
 ### Parameters
 
@@ -101,7 +103,7 @@ The `IntersectionObserverOptions` are passed directly into the `IntersectionObse
 
 ### Return Value
 
-`useIntersectionObserver` returns an object containing a React ref and an instance of `IntersectionObserverEntry`:
+`useIntersectionObserver` returns an `IntersectionObserverState` object containing the following properties:
 
 | Property    | Type                                                                                                      | Description                                                                                                     |
 | :---------- | :-------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |

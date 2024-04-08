@@ -48,7 +48,9 @@ export default function FetchPeople() {
 
 ### Hook Signature
 
-**`useFetch(converter?: ConverterFunction<T>)`**
+```tsx
+useFetch(converter?: ConverterFunction<T>): FetchState<T>
+```
 
 ### Parameters
 
@@ -57,14 +59,14 @@ A function that takes the fetched data as an argument and returns a value of typ
 
 ### Return Value
 
-The hook returns an object with the following properties:
+The hook returns a `FetchState` object with the following properties:
 
-| Property      | Type                      | Description                                                                                                        |
-| :------------ | :------------------------ | :----------------------------------------------------------------------------------------------------------------- |
-| **`load`**    | `(url: string, options?)` | A function that initiates the data fetching process from the specified URL                                         |
-| **`data`**    | `T` \| `undefined`        | The fetched data. It will be undefined until the data is successfully fetched and processed                        |
-| **`loading`** | `boolean`                 | A boolean indicating whether the data is currently being fetched                                                   |
-| **`error`**   | `string` \| `null`        | An error message that provides information about any fetch-related errors. It will be null if there are no errors. |
+| Property      | Type                              | Description                                                                                                                                                                                                                              |
+| :------------ | :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`load`**    | `(url: string, options?: object)` | A function that initiates the data fetching process from the specified URL. If provided, the `options` object is passed as the [2nd argument to the `fetch()` function](https://developer.mozilla.org/en-US/docs/Web/API/fetch#options). |
+| **`data`**    | `T \| undefined`                  | The fetched data. It will be undefined until the data is successfully fetched and processed                                                                                                                                              |
+| **`loading`** | `boolean`                         | A boolean indicating whether the data is currently being fetched                                                                                                                                                                         |
+| **`error`**   | `string \| null`                  | An error message that provides information about any fetch-related errors. It will be null if there are no errors.                                                                                                                       |
 
 #### A note on the `load` function
 

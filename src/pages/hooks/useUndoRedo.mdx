@@ -41,13 +41,17 @@ export default function SearchInput() {
 
 ### Hook Signature
 
-**`useUndoRedo<T>()`**
+```tsx
+function useUndoRedo<T>(): UndoRedoState
+```
 
 ### Parameters
 
 This hook does not accept any parameters. Its type parameter `T` represents the type of the actions that will be managed by the hook.
 
 ### Return Value
+
+`useUndoRedo` returns a `UndoRedoState` object with the following properties:
 
 | Property           | Type                  | Description                                                                                           |
 | :----------------- | :-------------------- | :---------------------------------------------------------------------------------------------------- |

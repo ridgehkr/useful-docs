@@ -46,7 +46,7 @@ For a complete list of all available hooks, see the [list below](#hooks-index).
 - [useClipboard](/hooks/useClipboard)\
   Copy and paste content to and from the clipboard.
 
-- [useCSSCustomProp](/hooks/useCSSCustomProp)\
+- [useCSSCustomProp](/hooks/useCustomCSSProp)\
   Track the current value of a CSS custom prop.
 
 - [useBatteryStatus](/hooks/useBatteryStatus)\
@@ -57,6 +57,9 @@ For a complete list of all available hooks, see the [list below](#hooks-index).
 
 - [useGeolocation](/hooks/useGeolocation)\
   Get the current geolocation of the user's device.
+
+- [useHover](/hooks/useHover)\
+  Track the hover state of a given element.
 
 - [useIdleTimeout](/hooks/useIdleTimeout)\
   Track user activity and trigger actions when the user becomes idle for a specified period.
@@ -70,7 +73,7 @@ For a complete list of all available hooks, see the [list below](#hooks-index).
 - [useMediaQuery](/hooks/useMediaQuery)\
   Monitor the state of custom media queries.
 
-- [useMousePosition](/hooks/useScrollPosition)\
+- [useMousePosition](/hooks/useMousePosition)\
   Track the current X and Y coordinates of the mouse.
 
 - [useOnlineStatus](/hooks/useOnlineStatus)\
@@ -119,13 +122,13 @@ For a complete list of all available hooks, see the [list below](#hooks-index).
 
 ## Roadmap
 
-Useful is a new project and still has room for growth! We plan to add more [hooks](#proposed-future-additions), [unit tests](#unit-tests), and improve documentation.
-
-Though these lists are by no means in their final state, these are the current plans for the future of Useful:
+Useful is a new project and still has room for growth! We plan to add more [hooks](#proposed-future-additions), [unit tests](#unit-tests), and continually improve documentation.
 
 ### Proposed Future Additions
 
-The following are proposed future additions to the library:
+_Have a suggestion for a hook that you'd like to see added to Useful? [Open an issue](https://github.com/ridgehkr/useful/issues/new) and let us know!_
+
+Though these lists are by no means in their final state, these are the current plans for the future of Useful:
 
 #### Hooks
 
@@ -136,11 +139,14 @@ The following are proposed future additions to the library:
 #### Unit Tests
 
 - [ ] `useAsync`
+- [ ] `useBatteryStatus`
+- [ ] `useClipboard`
 - [x] `useCustomCSSProp`
 - [ ] `useDarkMode`
-- [ ] `useDebounce` (in progress)
+- [ ] `useDebounce`
+- [ ] `useDeviceOrientation`
 - [ ] `useElementSize`
-- [ ] `useFetch`
+- [x] `useFetch`
 - [ ] `useGeolocation`
 - [ ] `useHover`
 - [ ] `useIdleTimeout`
@@ -150,13 +156,15 @@ The following are proposed future additions to the library:
 - [ ] `useMediaQuery`
 - [ ] `useMousePosition`
 - [ ] `useOnlineStatus`
+- [ ] `usePagination`
 - [ ] `useRandomString`
 - [ ] `useScrollPosition`
 - [ ] `useSessionStorage`
 - [ ] `useSlideshow`
 - [x] `useStack`
-- [ ] `useTabs`
+- [x] `useTabs`
 - [ ] `useThrottle`
+- [ ] `useTimedCounter`
 - [x] `useUndoRedo`
 - [ ] `useWindowSize`
 
@@ -168,4 +176,4 @@ Useful thrives on contributions from developers like you! If you encounter issue
 
 This project is licensed under the [MIT License](https://github.com/ridgehkr/hooks/blob/master/LICENSE.txt).
 
-Built by [Caleb Pierce](https://calebpierce.dev).
+Created by [Caleb Pierce](https://calebpierce.dev).
