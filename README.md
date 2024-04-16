@@ -1,6 +1,6 @@
-# Useful: Documentation
+# useFul: Documentation
 
-This is the documentation project for [Useful](https://usefulhooks.com/) and is published to [docs.useful.com](https://docs.usefulhooks.com/).
+This is the documentation project for [useFul](https://usefulhooks.com/) and is published to [docs.useful.com](https://docs.usefulhooks.com/).
 
 ## Development
 
@@ -18,7 +18,7 @@ This documentation site was built with [Nextra](https://nextra.site/).
 
 ## Author
 
-This documentation as well as its sister project [Useful](https://usefulhooks.com/) is built and maintained by [Caleb Pierce](https://calebpierce.dev/).
+This documentation as well as its sister project [useFul](https://usefulhooks.com/) is built and maintained by [Caleb Pierce](https://calebpierce.dev/).
 
 ## License
 
