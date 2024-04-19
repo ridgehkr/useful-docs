@@ -19,7 +19,7 @@ The following is a basic example where `useGeolocation` is used to query the bro
 ```tsx /useGeolocation/ filename="LocationComponent.tsx"
 import { useGeolocation } from '@ridgehkr/useful'
 
-export default function LocationComponent() {
+function LocationComponent() {
   const { location, getLocation } = useGeoLocation()
 
   // Trigger getLocation to update the user's location

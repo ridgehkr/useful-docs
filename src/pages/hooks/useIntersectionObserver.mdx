@@ -78,7 +78,7 @@ const Figure = ({ src, caption }: FigureProps) => {
   )
 }
 
-export default function LazyLoader() {
+function LazyLoader() {
   return (
     <div>
       {images.map(({ src, caption }, index) => {

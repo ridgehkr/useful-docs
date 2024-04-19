@@ -20,7 +20,7 @@ import { useFetch } from '@ridgehkr/useful'
 import { useEffect } from 'react'
 import { useFetch } from '@ridgehkr/useful'
 
-export default function FetchPeople() {
+function FetchPeople() {
   const { load, data, loading, error } = useFetch()
 
   // Load data when the component mounts

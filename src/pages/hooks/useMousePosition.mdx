@@ -21,7 +21,7 @@ The `useMousePosition` hook doesn't take any parameters. It returns an object wi
 ```tsx /useMousePosition/ filename="MouseTracker.tsx"
 import { useMousePosition } from '@ridgehkr/useful'
 
-export default function MouseTracker() {
+function MouseTracker() {
   const { x, y } = useMousePosition()
 
   return (

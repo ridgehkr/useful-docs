@@ -17,7 +17,7 @@ import { useList } from '@ridgehkr/useful'
 ```tsx /useList/ filename="MyListComponent.tsx"
 import { useList, List } from '@ridgehkr/useful'
 
-export default function MyListComponent() {
+function MyListComponent() {
   // Initialize the list with some items
   const { items, head, size, prepend, remove, append }: List = useList<string>([
     'Item 1',

@@ -21,9 +21,9 @@ import { useClipboard } from '@ridgehkr/useful'
 ## Example
 
 ```tsx /useClipboard/ filename="ClipboardExample.tsx"
-import useClipboard, { ClipboardStatus } from './useClipboard'
+import useClipboard, { ClipboardStatus } from '@ridgehkr/useful'
 
-export default function ClipboardExample() {
+function ClipboardExample() {
   const { value, copy, clear }: ClipboardStatus = useClipboard()
 
   return (

@@ -15,7 +15,9 @@ import { useHover } from '@ridgehkr/useful'
 ## Example
 
 ```tsx /useHover/ filename="DetectHover.tsx"
-export default function DetectHover() {
+import { useHover } from '@ridgehkr/useful'
+
+function DetectHover() {
   const { ref, hasHover } = useHover() // useHover(true) to include touch events
 
   return <div ref={ref}>{hasHover ? 'Hovered' : 'Not Hovered'}</div>

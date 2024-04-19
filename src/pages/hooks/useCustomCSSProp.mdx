@@ -54,7 +54,7 @@ You can also specify a different root element to monitor for the custom property
 ```tsx /--radius/ filename="Button.jsx"
 import { useCustomCSSProp } from '@ridgehkr/useful'
 
-export function Button() {
+function Button() {
   const buttonRef = useRef(null)
   const buttonRadius = useCustomCSSProp('--radius', buttonRef)
 

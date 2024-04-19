@@ -20,7 +20,7 @@ This is a basic example where `useThrottle` is used to limit the update frequenc
 import { ChangeEvent, useState } from 'react'
 import { useThrottle } from '@ridgehkr/useful'
 
-export default function SearchInput() {
+function SearchInput() {
   const [inputValue, setInputValue] = useState<string>('')
   const throttledValue = useThrottle<string>(inputValue, 600)
 

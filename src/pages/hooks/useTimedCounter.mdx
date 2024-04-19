@@ -19,7 +19,7 @@ This is a basic example where `useTimedCounter` is used to manage the current in
 ```tsx /useTimedCounter/ filename="TestTimer.tsx"
 import { useTimedCounter } from '@ridgehkr/useful'
 
-export default function TestTimer() {
+function TestTimer() {
   const { index, pause, play, reset, goToIndex, running } = useTimedCounter(
     1,
     10,

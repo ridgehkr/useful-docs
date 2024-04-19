@@ -22,7 +22,7 @@ This is a simple example of how to store a user's name in local storage. The nam
 import { useState } from 'react'
 import { useLocalStorage } from '@ridgehkr/useful'
 
-export default function UserGreeting() {
+function UserGreeting() {
   const [name, setName] = useState('')
   const { value, setStoredValue, deleteStoredValue } = useLocalStorage<string>(
     'user_name',

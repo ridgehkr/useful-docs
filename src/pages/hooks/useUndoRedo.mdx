@@ -23,7 +23,7 @@ This is a basic example where `useUndoRedo` is used to manage a stack of user ac
 ```tsx /useUndoRedo/ filename="UserActions.tsx"
 import { useUndoRedo } from '@ridgehkr/useful'
 
-export default function SearchInput() {
+function SearchInput() {
   const { actions, redo, undo, takeAction, clearActions } = useUndoRedo()
 
   return (

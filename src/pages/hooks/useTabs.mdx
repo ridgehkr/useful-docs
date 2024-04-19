@@ -23,7 +23,7 @@ This example demonstrates adding, removing, and switching between tabs:
 ```tsx /useTabs/ filename="MyTabs.tsx"
 import { useTabs } from '@ridgehkr/useful'
 
-export default function MyTabs() {
+function MyTabs() {
   const { tabs, activeTab, addTab, removeTab, activateTab } = useTabs()
 
   const handleAddTab = () => {

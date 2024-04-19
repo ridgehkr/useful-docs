@@ -22,7 +22,7 @@ This is a simple example of how to store a user's name in session storage. The n
 import { useState } from 'react'
 import { useSessionStorage } from '@ridgehkr/useful'
 
-export default function SessionStorageManager() {
+function SessionStorageManager() {
   const [name, setName] = useState('')
   const { value, setStoredValue, deleteStoredValue } =
     useSessionStorage<string>('user_name', '')

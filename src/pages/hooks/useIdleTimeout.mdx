@@ -19,7 +19,7 @@ import { useIdleTimeout } from '@ridgehkr/useful'
 ```tsx /useIdleTimeout/ filename="IdleMonitor.tsx"
 import { useIdleTimeout } from '@ridgehkr/useful'
 
-export default function IdleMonitor() {
+function IdleMonitor() {
   // trigger after 30 seconds of inactivity
   const isIdle = useIdleTimeout(30000)
 

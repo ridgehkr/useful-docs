@@ -21,7 +21,7 @@ A simple usage example of how to capture and display device orientation data:
 ```tsx /useDeviceOrientation/ filename="DeviceOrientation.tsx"
 import useDeviceOrientation, { DeviceOrientationData } from '@ridgehkr/useful'
 
-export default function DeviceOrientation() {
+function DeviceOrientation() {
   const { alpha, beta, gamma }: DeviceOrientationData = useDeviceOrientation()
 
   return (

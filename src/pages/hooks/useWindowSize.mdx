@@ -19,7 +19,7 @@ The `useWindowSize` hook doesn't take any parameters. It returns an object with 
 ```tsx /useWindowSize/ filename="WindowSize.tsx"
 import { useWindowSize } from '@ridgehkr/useful'
 
-export default function WindowSize() {
+function WindowSize() {
   const { width, height } = useWindowSize()
 
   return (

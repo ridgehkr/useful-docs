@@ -17,7 +17,7 @@ import { useBatteryStatus } from '@ridgehkr/useful'
 ```tsx /useBatteryStatus/ filename="BatteryStatus.tsx"
 import useBatteryStatus, { BatteryStatus } from '@ridgehkr/useful'
 
-export default function BatteryStatusMonitor() {
+function BatteryStatusMonitor() {
   const { level, charging }: BatteryStatus = useBatteryStatus()
 
   return (

@@ -17,10 +17,9 @@ import { useOnlineStatus } from '@ridgehkr/useful'
 This basic example displays a message indicating online status. (Note: to simulate offline status, you can use the Network tab in your browser's DevTools to disable the network connection.)
 
 ```jsx /useOnlineStatus/ filename="OnlineStatus.jsx"
-import React from 'react'
 import { useOnlineStatus } from '@ridgehkr/useful'
 
-export default function OnlineStatus() {
+function OnlineStatus() {
   const isOnline = useOnlineStatus()
 
   return (

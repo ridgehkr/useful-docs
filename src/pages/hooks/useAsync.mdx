@@ -43,7 +43,6 @@ Setting this argument to `false` means the async function will not run immediate
 ### Example 1: Immediate Execution
 
 ```tsx /useAsync/ filename="AsyncHandler.jsx"
-import React from 'react'
 import { useAsync } from '@ridgehkr/useful'
 
 const asyncFunction = async (): Promise<string> => {
@@ -54,7 +53,7 @@ const asyncFunction = async (): Promise<string> => {
   })
 }
 
-const AsyncHandler = () => {
+function AsyncHandler() {
   const { data, loading, error } = useAsync<string>(asyncFunction, true)
 
   return (
@@ -89,7 +88,7 @@ const asyncFunction = async (): Promise<string> => {
   })
 }
 
-const HookDemo = () => {
+function HookDemo() {
   const { data, loading, error, run } = useAsync<string>(asyncFunction, false)
 
   return (

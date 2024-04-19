@@ -20,7 +20,7 @@ import { useSlideshow } from '@ridgehkr/useful'
 import { useState } from 'react'
 import { useSlideshow } from '@ridgehkr/useful'
 
-export default function SlideshowDemo() {
+function SlideshowDemo() {
   const { slides, activeSlideIndex, addSlide, removeSlide, activateSlide } =
     useSlideshow<string>(['Slide 1', 'Slide 2', 'Slide 3'])
 
