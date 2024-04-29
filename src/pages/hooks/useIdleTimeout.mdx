@@ -1,6 +1,6 @@
 # useIdleTimeout
 
-This utility hook helps you track user activity and trigger actions when the user becomes inactive for a specified period of time. It is useful for scenarios where you want to perform specific tasks, such as showing a warning message or logging out a user when there has been no user interaction for a certain amount of time.
+This utility hook helps you track user activity and trigger actions when the user becomes inactive for a specified period of time. It is useful for scenarios where you want to perform interaction-dependent tasks, such as showing a warning message or logging out a user when there has been no user interaction for a certain amount of time.
 
 ## Usage
 
@@ -14,7 +14,7 @@ import { useIdleTimeout } from '@ridgehkr/useful'
 
 ### Example
 
-`useIdleTimeout` is used to monitor user activity, and it updates its boolean return value to indicate whether the user is idle or active:
+Here, `useIdleTimeout` is used to monitor user activity, updating a boolean return value to indicate whether the user is idle or active:
 
 ```tsx /useIdleTimeout/ filename="IdleMonitor.tsx"
 import { useIdleTimeout } from '@ridgehkr/useful'
