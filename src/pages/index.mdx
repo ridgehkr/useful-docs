@@ -5,12 +5,6 @@ import Install from './_partials/install.mdx'
 
 Useful is designed to simplify and expedite your React application development. It takes care of utility side tasks, allowing you to concentrate on your application's own unique requirements. Here, you'll find comprehensive guidance on how to utilize and integrate Useful's hooks into your React applications.
 
-<Callout emoji='⚠️'>
-  Useful is currently in Alpha and is **not recommended for production
-  environments.** In the meantime, you can help us reach our first stable
-  release by [contributing](https://github.com/ridgehkr/useful/).
-</Callout>
-
 ## Getting Started
 
 First, install useful from NPM by running the following in your terminal:
@@ -93,6 +87,9 @@ For a complete list of all available hooks, see the [list below](#hooks-index).
 - [useAsync](/hooks/useAsync)\
   Manage the execution state of an asyncronous function.
 
+- [useColorContrast](/hooks/useColorContrast)\
+  Calculate the contrast ratio between two colors based on WCAG accessibility guidelines.
+
 - [useDebounce](/hooks/useDebounce)\
   Debounce the updating of a value to limit rapid-firing events.
 
@@ -126,21 +123,23 @@ Useful is a new project and still has room for growth! We plan to add more [hook
 
 ### Proposed Future Additions
 
-_Have a suggestion for a hook that you'd like to see added to Useful? [Open an issue](https://github.com/ridgehkr/useful/issues/new) and let us know!_
-
 Though these lists are by no means in their final state, these are the current plans for the future of Useful:
+
+<Callout emoji='⭐️' type='info'>
+  Have a suggestion for a hook that you'd like to see added to Useful? [Open an
+  issue](https://github.com/ridgehkr/useful/issues/new) and let us know!
+</Callout>
 
 #### Hooks
 
 - [ ] `useModal`: manage display state and possibly other properties of a modal
-- [x] `usePagination`: manage pagination state
-- [x] `useClipboard`: copy and paste content to and from the clipboard
 
 #### Unit Tests
 
 - [ ] `useAsync`
 - [ ] `useBatteryStatus`
 - [ ] `useClipboard`
+- [x] `useColorContrast`
 - [x] `useCustomCSSProp`
 - [ ] `useDarkMode`
 - [ ] `useDebounce`

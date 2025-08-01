@@ -2,6 +2,7 @@
   "useAsync": "useAsync",
   "useBatteryStatus": "useBatteryStatus",
   "useClipboard": "useClipboard",
+  "useColorContrast": "useColorContrast",
   "useCustomCSSProp": "useCustomCSSProp",
   "useDarkMode": "useDarkMode",
   "useDebounce": "useDebounce",

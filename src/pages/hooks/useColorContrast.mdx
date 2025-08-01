@@ -1,0 +1,67 @@
+# useColorContrast
+
+The `useColorContrast` hook calculates the contrast ratio between two colors based on the [WCAG 2.2](https://www.w3.org/TR/WCAG22/#contrast-minimum) accessibility guidelines. It supports a wide range of modern CSS color formats, including `hex`, `rgb()`, `rgba()`, `hsl()`, `hwb()`, `lch()`, `oklch()`, and named colors. You can also mix and match these formats, such as using a `hex` color for the foreground and an `rgb()` color for the background.
+
+This can help ensure that your color combinations meet accessibility standards by providing an accurate contrast ratio, even when colors include alpha transparency.
+
+## Usage
+
+1. Make sure you have `@ridgehkr/useful` installed in your application. If not, you can get started by following the [installation instructions](/#getting-started).
+
+2. Import `useColorContrast` into your component.
+
+```tsx
+import { useColorContrast } from '@ridgehkr/useful'
+```
+
+## Example
+
+```tsx
+import useColorContrast from '@ridgehkr/useful'
+
+function ColorContrastExample() {
+  const contrast = useColorContrast('#FF0000', 'rgb(0, 255, 0)')
+
+  return (
+    <div>
+      <p>Contrast Ratio: {contrast.toFixed(2)}</p>
+    </div>
+  )
+}
+```
+
+## API
+
+### Hook Signature
+
+```ts
+useColorContrast(foreground: string, background: string): number
+```
+
+### Parameters
+
+| Parameter    | Type     | Description                                                     |
+| ------------ | -------- | --------------------------------------------------------------- |
+| `foreground` | `string` | The foreground (text) color. Supports all standard CSS formats. |
+| `background` | `string` | The background color. Supports all standard CSS formats.        |
+
+### Return Value
+
+Returns a number representing the contrast ratio between the two colors. The range is:
+
+- **1** for identical colors
+- **21** for maximum contrast (e.g., black on white)
+- If either input is invalid, the hook returns **0**.
+
+### Supported Color Formats
+
+| Format           | Examples                                     |
+| ---------------- | -------------------------------------------- |
+| **Named colors** | `"red"`, `"blue"`, `"green"`, etc.           |
+| **HEX**          | `#F00`, `#FF0000`, `#FF000080`               |
+| **RGB**          | `rgb(255, 0, 0)`, `rgb(100%, 0%, 0%)`        |
+| **RGBA**         | `rgba(255, 0, 0, 0.5)`                       |
+| **HSL**          | `hsl(0, 100%, 50%)`                          |
+| **HWB**          | `hwb(0 0% 0%)`, `hwb(120deg 0% 0%)`          |
+| **LCH**          | `lch(50 50 0)`, `lch(50% 50 0deg)`           |
+| **OKLCH**        | `oklch(0.5 0.1 0)`, `oklch(0.5 0.1 0 / 0.5)` |
